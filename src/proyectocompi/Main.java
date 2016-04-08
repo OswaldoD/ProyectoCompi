@@ -11,7 +11,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import jdk.nashorn.internal.parser.Lexer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import proyectocompi.jflex.Lexer;
+import proyectocompi.jflex.Token;
 
 /**
  *
@@ -29,20 +32,73 @@ public class Main {
     
     public Main(){
         visual();
+        
     }
     
     public void visual(){
         System.out.println("Compilador de Python");
         
+        Scan(fileReader());
+        
+        
         
 
     }
     
-    public void fileReader() throws IOException{
-                Reader reader = new BufferedReader(new FileReader("file.txt"));
+    public Lexer fileReader(){
+       String path = "/Users/usuario/NetBeansProjects/ProyectoCompi/src/"
+                      + "proyectocompi/file.txt";
+       // /Users/usuario/NetBeansProjects/ProyectoCompi/src/proyectocompi
+       try{
+           Reader reader = new BufferedReader(new FileReader(path));
         
-       // Lexer lexer = new Lexer(reader);
-        
+           Lexer lexer = new Lexer(reader);
+           
+           return lexer;
+       }
+       catch (Exception e){
+           Lexer lexer = new Lexer(null);
+           
+           return lexer;
+       }
+       
+   
+       
+    }
+    public void Scan(Lexer lexer){
+       String Resultados = "";
+       
+       while (true){
+           try {
+               Token token = lexer.yylex();
+               if (token == null){
+                   Resultados = Resultados + "FIN\n";
+                   System.out.println(Resultados);
+                   break;
+               }
+               switch(token){
+                   case ERROR:
+                       Resultados = Resultados + "Error, no existe\n";
+                       break;
+                   case Variable:
+                   case Numero:
+                       Resultados = Resultados + "Token: " + token + " " + lexer.lexeme + "\n";
+                       break;
+                   default:
+                       Resultados = Resultados + "Token: " + token + " "+ lexer.lexeme + "\n";
+                       break;
+               
+                       
+               }
+           } catch (IOException ex) {
+               Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+              // break;
+           }
+  
+           
+           
+       }
+       
     }
      
 
