@@ -18,3 +18,8 @@ assert
 ~
 <<
 >>
+in
+not in
+is
+in not,
+:
