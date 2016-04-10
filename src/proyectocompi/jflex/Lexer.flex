@@ -28,6 +28,8 @@ palabrasReservadas = "and" | "assert" | "break" | "class" | "continue" | "def" |
 operadorAritmetico = "+" | "-" | "*" | "/" | "%" | "**" | "//" 
 operadorComparativo = "==" | "!=" | "<>" | ">" | "<" | ">=" | "<="
 operadorAsignativo = "=" | "+=" | "-=" | "*=" | "/=" | "%=" | "**=" | "//="
+operadorBits = "&" | "|" | "^" | "~" | "<<" | ">>"
+operadorLogico = "and"
 %%
 {white} {/*Ignore*/}
 /*"//".* {/*Ignore*/}*/
@@ -37,5 +39,7 @@ operadorAsignativo = "=" | "+=" | "-=" | "*=" | "/=" | "%=" | "**=" | "//="
 {operadorAritmetico} {lexeme=yytext(); return operador_aritmetico;}
 {operadorComparativo} {lexeme=yytext(); return operador_comparativo;}
 {operadorAsignativo} {lexeme=yytext(); return operador_asignativo;}
+{operadorBits} {lexeme=yytext(); return operador_bits;}
+{operadorLogico} {lexeme=yytext(); return operador_logico:}
 . {return ERROR;}
 
