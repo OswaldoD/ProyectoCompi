@@ -33,9 +33,11 @@ public class Lexer {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\12\0\1\5\1\6\1\6\1\6\22\0\1\3\11\0\1\11\1\10"+
-    "\1\3\1\12\1\0\1\4\12\2\3\0\1\7\43\0\2\1\42\0"+
-    "\1\6\u1fa2\0\1\6\1\6\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
+    "\12\0\1\32\1\33\1\33\1\33\22\0\1\3\11\0\1\36\1\35"+
+    "\1\3\1\37\1\0\1\31\12\2\3\0\1\34\43\0\1\4\1\1"+
+    "\1\14\1\6\1\10\1\21\1\26\1\30\1\17\1\0\1\13\1\15"+
+    "\1\25\1\5\1\16\1\23\1\0\1\11\1\7\1\12\1\20\1\0"+
+    "\1\27\1\22\1\24\13\0\1\33\u1fa2\0\1\33\1\33\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\udfe6\0";
 
   /** 
    * Translates characters to character classes
@@ -48,11 +50,12 @@ public class Lexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7"+
-    "\1\10\1\11\1\4";
+    "\1\0\1\1\1\2\1\3\1\4\1\2\16\1\1\5"+
+    "\1\6\1\7\1\10\1\11\15\0\1\12\12\0\1\4"+
+    "\41\0";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[11];
+    int [] result = new int[83];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -77,11 +80,20 @@ public class Lexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\13\0\13\0\13\0\13\0\26\0\13\0\13"+
-    "\0\13\0\13\0\41";
+    "\0\0\0\40\0\100\0\40\0\40\0\140\0\200\0\240"+
+    "\0\300\0\340\0\u0100\0\u0120\0\u0140\0\u0160\0\u0180\0\u01a0"+
+    "\0\u01c0\0\u01e0\0\u0200\0\u0220\0\u0240\0\40\0\40\0\40"+
+    "\0\40\0\u0260\0\u0280\0\u02a0\0\u02c0\0\u02e0\0\u0300\0\u0320"+
+    "\0\u0340\0\u0360\0\u0380\0\u03a0\0\u03c0\0\u03e0\0\40\0\u0400"+
+    "\0\u0420\0\u0160\0\u0440\0\u0460\0\u0480\0\u04a0\0\u04c0\0\u04e0"+
+    "\0\u0500\0\u0520\0\u0540\0\u0560\0\u0580\0\u05a0\0\u05c0\0\u05e0"+
+    "\0\u0600\0\u0620\0\u0640\0\u0660\0\u0680\0\u06a0\0\u06c0\0\u06e0"+
+    "\0\u0700\0\u0720\0\u0740\0\u0760\0\u0780\0\u07a0\0\u07c0\0\u07e0"+
+    "\0\u0800\0\u0820\0\u0840\0\u0860\0\u0880\0\u08a0\0\u08c0\0\u08e0"+
+    "\0\u0900\0\u0920\0\u0940";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[11];
+    int [] result = new int[83];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -104,12 +116,35 @@ public class Lexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\1\6\1\5\1\0\1\7"+
-    "\1\10\1\11\1\12\17\0\1\13\6\0\5\13\2\0"+
-    "\4\13";
+    "\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\2"+
+    "\1\11\1\12\1\13\1\2\1\14\1\15\1\16\1\17"+
+    "\1\2\1\20\1\2\1\21\1\22\1\2\1\23\1\24"+
+    "\1\2\1\25\1\5\1\0\1\26\1\27\1\30\1\31"+
+    "\51\0\1\32\33\0\1\33\1\0\1\34\46\0\1\35"+
+    "\31\0\1\36\44\0\1\37\4\0\1\40\21\0\1\41"+
+    "\3\0\1\42\40\0\1\43\43\0\1\44\1\45\25\0"+
+    "\1\46\44\0\1\47\33\0\1\47\1\0\1\47\11\0"+
+    "\1\47\3\0\1\50\23\0\1\51\4\0\1\52\1\53"+
+    "\24\0\1\54\4\0\1\55\45\0\1\56\35\0\1\57"+
+    "\41\0\1\60\10\0\1\61\40\0\1\62\16\0\1\63"+
+    "\35\0\1\47\40\0\1\64\42\0\1\47\42\0\1\47"+
+    "\3\0\1\47\25\0\1\65\7\0\1\66\30\0\1\67"+
+    "\3\0\1\70\42\0\1\71\32\0\1\72\51\0\1\47"+
+    "\17\0\1\54\40\0\1\73\57\0\1\74\35\0\1\75"+
+    "\32\0\1\76\26\0\1\77\41\0\1\100\47\0\1\101"+
+    "\30\0\1\102\45\0\1\103\33\0\1\104\44\0\1\105"+
+    "\20\0\32\62\2\0\4\62\4\0\1\106\43\0\1\107"+
+    "\37\0\1\47\50\0\1\47\32\0\1\47\33\0\1\110"+
+    "\36\0\1\65\50\0\1\111\31\0\1\112\26\0\1\113"+
+    "\54\0\1\107\46\0\1\47\16\0\1\114\42\0\1\47"+
+    "\35\0\1\35\47\0\1\33\23\0\1\115\66\0\1\47"+
+    "\24\0\1\65\35\0\1\47\35\0\1\35\51\0\1\35"+
+    "\25\0\1\116\45\0\1\117\26\0\1\120\46\0\1\121"+
+    "\26\0\1\122\40\0\1\47\37\0\1\123\36\0\1\47"+
+    "\50\0\1\43\37\0\1\47\42\0\1\65\17\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[44];
+    int [] result = new int[2400];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -147,10 +182,11 @@ public class Lexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\4\11\1\1\4\11\1\1";
+    "\1\0\1\11\1\1\2\11\20\1\4\11\15\0\1\11"+
+    "\12\0\1\1\41\0";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[11];
+    int [] result = new int[83];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -227,6 +263,7 @@ public class Lexer {
 
   /* user code: */
     public String lexeme;
+    public int linea() {return yyline+1;}
 
 
   /**
@@ -249,7 +286,7 @@ public class Lexer {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 82) {
+    while (i < 130) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -477,6 +514,58 @@ public class Lexer {
     while (true) {
       zzMarkedPosL = zzMarkedPos;
 
+      boolean zzR = false;
+      int zzCh;
+      int zzCharCount;
+      for (zzCurrentPosL = zzStartRead  ;
+           zzCurrentPosL < zzMarkedPosL ;
+           zzCurrentPosL += zzCharCount ) {
+        zzCh = Character.codePointAt(zzBufferL, zzCurrentPosL, zzMarkedPosL);
+        zzCharCount = Character.charCount(zzCh);
+        switch (zzCh) {
+        case '\u000B':
+        case '\u000C':
+        case '\u0085':
+        case '\u2028':
+        case '\u2029':
+          yyline++;
+          zzR = false;
+          break;
+        case '\r':
+          yyline++;
+          zzR = true;
+          break;
+        case '\n':
+          if (zzR)
+            zzR = false;
+          else {
+            yyline++;
+          }
+          break;
+        default:
+          zzR = false;
+        }
+      }
+
+      if (zzR) {
+        // peek one character ahead if it is \n (if we have counted one line too much)
+        boolean zzPeek;
+        if (zzMarkedPosL < zzEndReadL)
+          zzPeek = zzBufferL[zzMarkedPosL] == '\n';
+        else if (zzAtEOF)
+          zzPeek = false;
+        else {
+          boolean eof = zzRefill();
+          zzEndReadL = zzEndRead;
+          zzMarkedPosL = zzMarkedPos;
+          zzBufferL = zzBuffer;
+          if (eof) 
+            zzPeek = false;
+          else 
+            zzPeek = zzBufferL[zzMarkedPosL] == '\n';
+        }
+        if (zzPeek) yyline--;
+      }
       zzAction = -1;
 
       zzCurrentPosL = zzCurrentPos = zzStartRead = zzMarkedPosL;
@@ -546,39 +635,43 @@ public class Lexer {
           case 1: 
             { return ERROR;
             }
-          case 10: break;
+          case 11: break;
           case 2: 
             { lexeme=yytext(); return Variable;
             }
-          case 11: break;
+          case 12: break;
           case 3: 
             { lexeme=yytext(); return Numero;
             }
-          case 12: break;
+          case 13: break;
           case 4: 
             { /*Ignore*/
             }
-          case 13: break;
+          case 14: break;
           case 5: 
             { lexeme=yytext(); return division;
             }
-          case 14: break;
-          case 6: 
-            { return igual;
-            }
           case 15: break;
-          case 7: 
-            { return suma;
+          case 6: 
+            { lexeme=yytext(); return igual;
             }
           case 16: break;
+          case 7: 
+            { lexeme=yytext(); return suma;
+            }
+          case 17: break;
           case 8: 
             { lexeme=yytext(); return multiplicacion;
             }
-          case 17: break;
+          case 18: break;
           case 9: 
             { lexeme=yytext(); return resta;
             }
-          case 18: break;
+          case 19: break;
+          case 10: 
+            { lexeme=yytext(); return palabra_reservada;
+            }
+          case 20: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
