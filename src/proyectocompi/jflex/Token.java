@@ -13,5 +13,5 @@ package proyectocompi.jflex;
  * 
  */
 public enum Token {
-    palabra_reservada,operador_aritmetico,igual, suma, Variable, Numero, multiplicacion, resta, division, ERROR;
+    palabra_reservada,operador_aritmetico,operador_comparativo,igual, Variable, Numero, ERROR;
 }
