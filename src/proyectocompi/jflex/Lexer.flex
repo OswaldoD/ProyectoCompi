@@ -27,14 +27,15 @@ palabrasReservadas = "and" | "assert" | "break" | "class" | "continue" | "def" |
 /* Definicion de operadores aritmeticos */
 operadorAritmetico = "+" | "-" | "*" | "/" | "%" | "**" | "//" 
 operadorComparativo = "==" | "!=" | "<>" | ">" | "<" | ">=" | "<="
+operadorAsignativo = "=" | "+=" | "-=" | "*=" | "/=" | "%=" | "**=" | "//="
 %%
 {white} {/*Ignore*/}
 /*"//".* {/*Ignore*/}*/
-"=" {lexeme=yytext(); return igual;}
 {L} {lexeme=yytext(); return Variable;}
 {D} {lexeme=yytext(); return Numero;}
 {palabrasReservadas} {lexeme=yytext(); return palabra_reservada;}
 {operadorAritmetico} {lexeme=yytext(); return operador_aritmetico;}
 {operadorComparativo} {lexeme=yytext(); return operador_comparativo;}
+{operadorAsignativo} {lexeme=yytext(); return operador_asignativo;}
 . {return ERROR;}
 
