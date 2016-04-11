@@ -31,5 +31,6 @@ public enum Token {
     Numero_Long,
     Numero_Flotante, 
     Numero_Complejo,
+    Identificador,
     ERROR;
 }

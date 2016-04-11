@@ -45,6 +45,7 @@ in not,
 -90.
 -32.54e100
 70.2-E12
+0DEFCBF
 3.14j
 45.j
 9.322e-36j
@@ -52,3 +53,6 @@ in not,
 -.6545+0J
 3e-26J
 4.53e-7j
+Cami3on_uno
+cami3on_dos
+

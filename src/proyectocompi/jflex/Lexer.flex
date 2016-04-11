@@ -18,8 +18,7 @@ variables = [aA-zZ]
 
 /*Definicion de los numeros*/
 numerosEnteros = \d+ | [-]\d+ | [-]\d+[x]\d+ | \d+[x]\d+
-numerosLong = \d+[L] | [-]\d+[L] | [-]\d+[x]\d+[L] | \d+\x2a\d+[L]
-/*numerosLong = \d+\A+(B+(C+(D+(E+(F+))))) --> esto para hexadecimales falta*/
+numerosLong = \d+[L] | [-]\d+[L] | [-]\d+[x]\d+[L] | \d+\x2a\d+[L] | \d+[x]([aA-fF]*) | \d+([aA-fF]*)
 
 numerosFlotantes = \d+[.] | [-]\d+[.] | \d+[.]\d+ | \d+[.]\d+[eE] | \d+[.]\d+[eE]\d+ | \d+[.]\d+[+-][eE] | \d+[.]\d+[+-][eE]\d+ |
                    [-]\d+[.]\d+ | [-]\d+[.]\d+[eE] | [-]\d+[.]\d+[eE]\d+ | [-]\d+[.]\d+[+-][eE] | [-]\d+[.]\d+[+-][eE]\d+
@@ -56,6 +55,12 @@ contenedor = "{" | "}" | "[" | "]" | "(" | ")"
 /* Definicion de literales */
 string = "'"[^']*"'" | "'''"[^']*"'''" | "\""[^']*"\""
 stringParrafo = "\"\"\""[^']*"\"\"\""
+
+
+/* Definicion de los identificadores */
+identificadores = ([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
+
+
 %%
 
 {white} {/*Ignore*/}
@@ -93,4 +98,7 @@ stringParrafo = "\"\"\""[^']*"\"\"\""
 {string} {lexeme=yytext(); return literal_string;}
 {stringParrafo} {lexeme=yytext(); return literal_string_parrafo;}
 . {return ERROR;}
+
+/* Identificadores */
+{identificadores} {lexeme=yytext(); return Identificador;}
 
