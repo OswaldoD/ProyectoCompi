@@ -13,8 +13,22 @@ import static proyectocompi.jflex.Token.*;
     public int linea() {return yyline+1;}
 %}
 %type Token
-L=[a-b]
-D=[0-9]
+/*Definicion de variables*/
+variables = [aA-zZ]
+
+/*Definicion de los numeros*/
+numerosEnteros = \d+ | [-]\d+ | [-]\d+[x]\d+ | \d+[x]\d+
+numerosLong = \d+[L] | [-]\d+[L] | [-]\d+[x]\d+[L] | \d+\x2a\d+[L]
+/*numerosLong = \d+\A+(B+(C+(D+(E+(F+))))) --> esto para hexadecimales falta*/
+
+numerosFlotantes = \d+[.] | [-]\d+[.] | \d+[.]\d+ | \d+[.]\d+[eE] | \d+[.]\d+[eE]\d+ | \d+[.]\d+[+-][eE] | \d+[.]\d+[+-][eE]\d+ |
+                   [-]\d+[.]\d+ | [-]\d+[.]\d+[eE] | [-]\d+[.]\d+[eE]\d+ | [-]\d+[.]\d+[+-][eE] | [-]\d+[.]\d+[+-][eE]\d+
+numerosComplejos = \d+[.][jJ] | [-]\d+[.][jJ] | \d+[.]\d+[jJ] | \d+[.]\d+[eE][jJ] | \d+[.]\d+[eE]\d+[jJ] | \d+[.]\d+[eE][+-]\d+[jJ] |                     
+                   [-]\d+[.]\d+[jJ] | [-]\d+[.]\d+[eE][jJ] | \d+[.]\d+[eE][+-]\d+[jJ] | [-]\d+[.]\d+[+-][eE][jJ] |
+                   [-]\d+[.]\d+[+-][eE]\d+[jJ] | [-][.]\d+[jJ] | [.]\d+[jJ] |[-][.]\d+[+-]\d+[jJ] | [.]\d+[+-]\d+[jJ] | 
+                   [-][.]\d+[eE][jJ] | [.]\d+[eE][jJ] |[-][.]\d+[eE][+-]\d+[jJ] | [.]\d+[eE][+-]\d+[jJ] |
+                   [-][.]\d+[+-][eE]\d+[jJ] | [.]\d+[+-][eE]\d+[jJ] | \d+[eE][+-]\d+[jJ]
+
 white=[ \n]
 
 /* Definicion de palabras reservadas */
@@ -43,10 +57,18 @@ contenedor = "{" | "}" | "[" | "]" | "(" | ")"
 string = "'"[^']*"'" | "'''"[^']*"'''" | "\""[^']*"\""
 stringParrafo = "\"\"\""[^']*"\"\"\""
 %%
+
 {white} {/*Ignore*/}
 /*"//".* {/*Ignore*/}*/
-{L} {lexeme=yytext(); return Variable;}
-{D} {lexeme=yytext(); return Numero;}
+
+/* Variables */
+{variables} {lexeme=yytext(); return Variable;}
+
+/* Numeros */
+{numerosEnteros} {lexeme=yytext(); return Numero_Entero;}
+{numerosLong} {lexeme=yytext(); return Numero_Long;}
+{numerosFlotantes} {lexeme=yytext(); return Numero_Flotante;}
+{numerosComplejos} {lexeme=yytext(); return Numero_Complejo;}
 
 /* palabras reservadas */
 {palabrasReservadas} {lexeme=yytext(); return palabra_reservada;}

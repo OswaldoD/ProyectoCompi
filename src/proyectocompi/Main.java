@@ -46,9 +46,11 @@ public class Main {
     }
     
     public Lexer fileReader(){
-       String path = "/Users/usuario/NetBeansProjects/ProyectoCompi/src/"
-                      + "proyectocompi/file.txt";
+      // String path = "/Users/usuario/NetBeansProjects/ProyectoCompi/src/"
+        //              + "proyectocompi/file.txt";
        // /Users/usuario/NetBeansProjects/ProyectoCompi/src/proyectocompi
+       
+       String path = "C:/Users/esporras/Documents/NetBeansProjects/ProyectoCompi/src/proyectocompi/file.txt";
        try{
            Reader reader = new BufferedReader(new FileReader(path));
         
@@ -81,7 +83,10 @@ public class Main {
                        Resultados = Resultados + "Error, no existe\n";
                        break;
                    case Variable:
-                   case Numero:
+                   case Numero_Entero:
+                   case Numero_Long:                       
+                   case Numero_Flotante:
+                   case Numero_Complejo:
                        Resultados = Resultados + "Token: " + token + " " + lexer.lexeme + "\n";
                        break;
                    default:

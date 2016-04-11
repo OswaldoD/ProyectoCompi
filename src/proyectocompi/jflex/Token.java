@@ -27,6 +27,9 @@ public enum Token {
     literal_string_parrafo,
     contenedor,
     Variable, 
-    Numero, 
+    Numero_Entero, 
+    Numero_Long,
+    Numero_Flotante, 
+    Numero_Complejo,
     ERROR;
 }

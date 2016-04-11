@@ -27,8 +27,10 @@ public class Generate {
     }
     
     public Generate(){
-        String path = "/Users/usuario/NetBeansProjects/ProyectoCompi/src/"
-                      + "proyectocompi/jflex/Lexer.flex";
+       // String path = "C:/Users/usuario/NetBeansProjects/ProyectoCompi/src/"
+                     //+ "proyectocompi/jflex/Lexer.flex";
+        String path = "C:/Users/esporras/Documents/NetBeansProjects/ProyectoCompi/src/proyectocompi/jflex/Lexer.flex";
+                
         generateLexer(path);
     }
     
