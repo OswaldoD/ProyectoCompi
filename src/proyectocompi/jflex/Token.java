@@ -23,6 +23,7 @@ public enum Token {
     separador_coma,
     separador_dos_puntos,
     separador_tab,
+    literal_string,
     Variable, 
     Numero, 
     ERROR;

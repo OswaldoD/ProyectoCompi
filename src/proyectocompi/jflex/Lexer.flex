@@ -36,6 +36,9 @@ separadorComa = ","
 separadorDosPuntos = ":"
 separadorTab = "  " /* revisar */
 
+/* Definicion de literales */
+string = "'"[^']*"'" 
+
 %%
 {white} {/*Ignore*/}
 /*"//".* {/*Ignore*/}*/
@@ -57,5 +60,8 @@ separadorTab = "  " /* revisar */
 {separadorComa} {lexeme=yytext(); return separador_coma;}
 {separadorTab} {lexeme=yytext(); return separador_tab;} /* revisar*/
 {separadorDosPuntos} {lexeme=yytext(); return separador_dos_puntos;}
+
+/* literales */
+{string} {lexeme=yytext(); return literal_string;}
 . {return ERROR;}
 
