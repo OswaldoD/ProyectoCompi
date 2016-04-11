@@ -23,4 +23,8 @@ not in
 is
 in not,
 :
-'hola soy un literal de s2ring'''
+' hola soy un literal de s2ring '''
+''' hola soy un string largo '''
+""" hola yo tambien soy un literal de string """
+(
+"hola yo soy un string como lo conoces normalmente"

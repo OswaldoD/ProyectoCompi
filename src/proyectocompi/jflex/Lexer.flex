@@ -36,9 +36,12 @@ separadorComa = ","
 separadorDosPuntos = ":"
 separadorTab = "  " /* revisar */
 
-/* Definicion de literales */
-string = "'"[^']*"'" 
+/* Definicion de contenedor */
+contenedor = "{" | "}" | "[" | "]" | "(" | ")"
 
+/* Definicion de literales */
+string = "'"[^']*"'" | "'''"[^']*"'''" | "\""[^']*"\""
+stringParrafo = "\"\"\""[^']*"\"\"\""
 %%
 {white} {/*Ignore*/}
 /*"//".* {/*Ignore*/}*/
@@ -61,7 +64,11 @@ string = "'"[^']*"'"
 {separadorTab} {lexeme=yytext(); return separador_tab;} /* revisar*/
 {separadorDosPuntos} {lexeme=yytext(); return separador_dos_puntos;}
 
+/* contenedores */
+{contenedor} {lexeme=yytext(); return contenedor;}
+
 /* literales */
 {string} {lexeme=yytext(); return literal_string;}
+{stringParrafo} {lexeme=yytext(); return literal_string_parrafo;}
 . {return ERROR;}
 
