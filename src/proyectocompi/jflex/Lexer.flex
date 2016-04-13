@@ -18,7 +18,7 @@ variables = [aA-zZ]
 
 /*Definicion de los numeros*/
 numerosEnteros = \d+ | [-]\d+ | [-]\d+[x]\d+ | \d+[x]\d+
-numerosLong = \d+[L] | [-]\d+[L] | [-]\d+[x]\d+[L] | \d+\x2a\d+[L] | \d+[x]([aA-fF]*) | \d+([aA-fF]*)
+numerosLong = \d+[L] | [-]\d+[L] | [-]\d+[x]\d+[L] | \d+\x2a\d+[L] | \d+[x]([aA-fF]*)[L] | \d+([aA-fF]*)[L]
 
 numerosFlotantes = \d+[.] | [-]\d+[.] | \d+[.]\d+ | \d+[.]\d+[eE] | \d+[.]\d+[eE]\d+ | \d+[.]\d+[+-][eE] | \d+[.]\d+[+-][eE]\d+ |
                    [-]\d+[.]\d+ | [-]\d+[.]\d+[eE] | [-]\d+[.]\d+[eE]\d+ | [-]\d+[.]\d+[+-][eE] | [-]\d+[.]\d+[+-][eE]\d+
