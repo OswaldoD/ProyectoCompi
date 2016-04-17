@@ -7,6 +7,7 @@
 package proyectocompi.jflex;
 
 import java.io.File;
+import java.nio.file.Paths;
 
 /**
  *
@@ -29,9 +30,12 @@ public class Generate {
     public Generate(){
        // String path = "C:/Users/usuario/NetBeansProjects/ProyectoCompi/src/"
                      //+ "proyectocompi/jflex/Lexer.flex";
-        String path = "C:/Users/esporras/Documents/NetBeansProjects/ProyectoCompi/src/proyectocompi/jflex/Lexer.flex";
+        //String path = "C:/Users/esporras/Documents/NetBeansProjects/ProyectoCompi/src/proyectocompi/jflex/Lexer.flex";
                 
-        generateLexer(path);
+      //  generateLexer(path);
+        String workingDirectory=Paths.get("").toAbsolutePath().toString();
+        workingDirectory += "/src/proyectocompi/jflex/Lexer.flex";
+        System.out.println(workingDirectory);
     }
     
     /**
