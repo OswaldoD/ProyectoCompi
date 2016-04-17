@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.nio.file.Paths;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import proyectocompi.jflex.Lexer;
@@ -50,7 +51,9 @@ public class Main {
         //              + "proyectocompi/file.txt";
        // /Users/usuario/NetBeansProjects/ProyectoCompi/src/proyectocompi
        
-       String path = "C:/Users/esporras/Documents/NetBeansProjects/ProyectoCompi/src/proyectocompi/file.txt";
+       //String path = "C:/Users/esporras/Documents/NetBeansProjects/ProyectoCompi/src/proyectocompi/file.txt";
+       String path = Paths.get("").toAbsolutePath().toString() + "/src/proyectocompi/file.txt";
+        
        try{
            Reader reader = new BufferedReader(new FileReader(path));
         
