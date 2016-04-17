@@ -20,6 +20,8 @@ import java.util.logging.Logger;
 import proyectocompi.jflex.Lexer;
 import proyectocompi.jflex.Token;
 import proyectocompi.jflex.TToken;
+import static proyectocompi.jflex.ordenamientoTokens.ordenamientoTokens;
+import proyectocompi.jflex.ListasTokens;
 
 /**
  *
@@ -28,6 +30,7 @@ import proyectocompi.jflex.TToken;
 public class Main {
 
     private ArrayList<TToken> Tokens;
+    ListasTokens listadoTokens = new ListasTokens();
     /**
      * @param args the command line arguments
      */
@@ -86,6 +89,7 @@ public class Main {
 //       String path = Paths.get("").toAbsolutePath().toString() + "/src/proyectocompi/file.txt";
 
         Scan(fileReader(path)); // inicio del scanner
+        visualizarListasTokens();//llamar a la función encargada de mostrar menú con opciones de visualización de als listas de token
     }
     
     public Lexer fileReader(String path){
@@ -116,44 +120,70 @@ public class Main {
            try {
                Token token = lexer.yylex();
                if (token == null){
-                   Resultados = Resultados + "FIN\n";
+                  // Resultados = Resultados + "FIN\n";
                   // System.out.println(Resultados);
                    break;
                }
                switch(token){
                    case ERROR:
                        Resultados = Resultados + "Error, no existe\n";
+                       //enviar a la lista de errores
                        break;     
                    case Numero_Entero:
                    case Numero_Long:                       
                    case Numero_Flotante:
                    case Numero_Complejo:
-                    //   Resultados = Resultados + "Token: " + token + " " + lexer.lexeme + "\n";
                       // break;
-                   default:
+                   default:                       
                        // almacenamiento de tokens
-                       TToken token_resultado = new TToken(lexer.lexeme, token, 1);
-                      // System.out.println(token_resultado.getLexeme());
-                       Tokens.add(token_resultado);
-                     //  Resultados = Resultados + "Token: " + token + " "+ lexer.lexeme + " linea: " +lexer.linea() +"\n";
-                       break;
-               
-                       
+                       TToken token_resultado = new TToken(lexer.lexeme, token, lexer.linea());                       
+                       //enviar el token a su respectiva lista según el tipo de token.
+                       if(token_resultado.getTipo_Token()=="palabra_reservada"){                           
+                           listadoTokens.insertarTokenPalabrasReservada(token_resultado);                           
+                       }
+                       else if(token_resultado.getTipo_Token()=="literal_string" || token_resultado.getTipo_Token()=="literal_string_parrafo"){
+                           listadoTokens.insertarTokenLiteral(token_resultado);
+                       }
+                       else if(token_resultado.getTipo_Token()=="Identificador"){
+                           listadoTokens.insertarTokenIdentificadores(token_resultado);
+                       }
+                       else if(token_resultado.getTipo_Token()=="operador_aritmetico" || 
+                               token_resultado.getTipo_Token()=="operador_comparativo" ||
+                               token_resultado.getTipo_Token()=="operador_asignativo" ||
+                               token_resultado.getTipo_Token()=="operador_bits" ||
+                               token_resultado.getTipo_Token()=="operador_logico"){
+                           listadoTokens.insertarTokenOperador(token_resultado);                           
+                       }
+                       else if(token_resultado.getTipo_Token()=="separador_coma" || 
+                               token_resultado.getTipo_Token()=="separador_dos_puntos" ||
+                               token_resultado.getTipo_Token()=="separador_tab"){
+                           listadoTokens.insertarTokenSeparador(token_resultado);
+                       }
+                       else if(token_resultado.getTipo_Token()=="contenedor"){
+                           listadoTokens.insertarTokenContenedor(token_resultado);
+                       }
+                       else if(token_resultado.getTipo_Token()=="Numero_Entero" || 
+                               token_resultado.getTipo_Token()=="Numero_Long" ||
+                               token_resultado.getTipo_Token()=="Numero_Flotante" ||
+                               token_resultado.getTipo_Token()=="Numero_Complejo"){
+                           listadoTokens.insertarTokenNumero(token_resultado);                           
+                       }                       
+                       else if(token_resultado.getTipo_Token()=="ERROR" || token_resultado.getTipo_Token()=="Error_Identificador"){
+                           listadoTokens.insertarTokenError(token_resultado);
+                       }                                              
+                       //Tokens.add(token_resultado);                                            
+                       break;                                    
                }
            } catch (IOException ex) {
                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
               // break;
            }
-  
-           
-           
+
        }
        System.out.println(Tokens.size()); // cantidad de tokens
-       /*
-       for(int i = 0; i < Tokens.size(); i++){
-           System.out.println(Tokens.get(i).getLexeme());
-
-       }*/
+       listadoTokens.insertarlistadoTotalTokens();
+        //listadoTokens.imprimirListatoTotalTokens();
+       // listadoTokens.imprimirListaErrores();
        
     }
      
@@ -202,6 +232,34 @@ public class Main {
                 return "ruta incorrecta";
               //  break;
         }
+    }
+    
+    
+    public void visualizarListasTokens(){
+        System.out.println("***************************************");
+        System.out.println("***** Imprensión Listas de Tokens *****");
+        System.out.println("***************************************");        
+        System.out.println("*** ¿Qué desea hacer?: ");
+        System.out.println("** 1- Imprimir Tokens Encontrados ");
+        System.out.println("** 2- Imprimir Errores Léxicos Encontrados");
+        System.out.println("** 3- Salir");
+        System.out.print("**Eliga una opción: ");
+        int seleccion;
+        Scanner scan = new Scanner(System.in);
+        seleccion = scan.nextInt();
+        switch(seleccion){
+            case 1:
+                listadoTokens.imprimirListatoTotalTokens();
+                break;
+            case 2:
+                listadoTokens.imprimirListaErrores();
+                break;
+            case 3:
+                System.exit(0);
+                break;
+
+        }
+        visualizarListasTokens();
     }
 
 }

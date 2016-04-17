@@ -6,6 +6,8 @@
 
 package proyectocompi.jflex;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author usuario
@@ -33,5 +35,5 @@ public class TToken {
     public int getNumero_Linea(){
         return this.numero_linea;
     }
-    
+        
 }
