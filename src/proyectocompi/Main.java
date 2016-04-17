@@ -56,26 +56,45 @@ public class Main {
         System.out.println("** 7- Comprobar identificadores");
         System.out.println("** 8- Prueba completa");
         System.out.println("** 9- Ejecutar archivo .mypy ");
-        System.out.print("**Eliga una opción: ");
+        System.out.print("** Eliga una opción: ");
         
-        Scanner scan = new Scanner(System.in);
-        String s = scan.next();
-       // System.out.println(s);
-        //int i = scan.nextInt();
-       // Scan(fileReader());
-        
-        
-        
+        int s;
+        String path;
+        while(true){
+            /*
+            Ciclo para que el rango de numeros sea entre 0 y 1.
+            */
+            Scanner scan = new Scanner(System.in);
+            s = scan.nextInt();
+     
+            if((s > 9) || (s < 1)){
+                System.out.println("** Opción incorrecta: ");
+                System.out.print("** Eliga una opción: ");
+                s = scan.nextInt();
+            }
+            else if(s == 9){
+                System.out.println("Ingrese la ruta del archivo: ");
+                path = scan.next();
+                break;
+            }
+            else{
+                path = rutaArchivo(s);
+                System.out.println(path);
+                break;
+            }
+        }
+//       String path = Paths.get("").toAbsolutePath().toString() + "/src/proyectocompi/file.txt";
 
+        Scan(fileReader(path)); // inicio del scanner
     }
     
-    public Lexer fileReader(){
+    public Lexer fileReader(String path){
       // String path = "/Users/usuario/NetBeansProjects/ProyectoCompi/src/"
         //              + "proyectocompi/file.txt";
        // /Users/usuario/NetBeansProjects/ProyectoCompi/src/proyectocompi
        
        //String path = "C:/Users/esporras/Documents/NetBeansProjects/ProyectoCompi/src/proyectocompi/file.txt";
-       String path = Paths.get("").toAbsolutePath().toString() + "/src/proyectocompi/file.txt";
+      // String path = Paths.get("").toAbsolutePath().toString() + "/src/proyectocompi/file.txt";
         
        try{
            Reader reader = new BufferedReader(new FileReader(path));
@@ -89,9 +108,6 @@ public class Main {
            
            return lexer;
        }
-       
-   
-       
     }
     public void Scan(Lexer lexer){
        String Resultados = "";
@@ -141,5 +157,51 @@ public class Main {
        
     }
      
+    private String rutaArchivo(int opcion){
+        /*
+                System.out.println("***** Compilador de Python *****");
+        System.out.println("*** ¿Qué desea hacer?: ");
+        System.out.println("** 1- Comprobar palabras reservadas ");
+        System.out.println("** 2- Comprobar operadores");
+        System.out.println("** 3- Comprobar literales números");
+        System.out.println("** 4- Comprobar literales string");
+        System.out.println("** 5- Comprobar separadores");
+        System.out.println("** 6- Comprobar contenedores");
+        System.out.println("** 7- Comprobar identificadores");
+        System.out.println("** 8- Prueba completa");
+        System.out.println("** 9- Ejecutar archivo .mypy ");
+        System.out.print("**Eliga una opción: ");
+        */
+        switch(opcion){
+            case 1:
+                return Paths.get("").toAbsolutePath().toString() + "/src/"
+                        + "pruebas/palabrasReservadas.txt";
+                //break;
+            case 2:
+                return Paths.get("").toAbsolutePath().toString() + "/src/"
+                        + "pruebas/operadores.txt";
+            case 3:
+                return Paths.get("").toAbsolutePath().toString() + "/src/"
+                        + "pruebas/numeros.txt";
+            case 4:
+                return Paths.get("").toAbsolutePath().toString() + "/src/"
+                        + "pruebas/strings.txt";
+            case 5:
+                return Paths.get("").toAbsolutePath().toString() + "/src/"
+                        + "pruebas/separadores.txt";
+            case 6:
+                return Paths.get("").toAbsolutePath().toString() + "/src/"
+                        + "pruebas/contenedores.txt";
+            case 7:
+                return Paths.get("").toAbsolutePath().toString() + "/src/"
+                        + "pruebas/identificadores.txt";
+            case 8:
+                return Paths.get("").toAbsolutePath().toString() + "/src/"
+                        + "pruebas/principal.txt";
+            default:
+                return "ruta incorrecta";
+              //  break;
+        }
+    }
 
 }
