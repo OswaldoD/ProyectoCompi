@@ -41,7 +41,8 @@ public class Main {
     public void visual(){
         System.out.println("***** Compilador de Python *****");
         System.out.println("*** ¿Qué desea hacer?: ");
-        System.out.println("** 1- Comprobar palabras reservadas ");
+        System.out.println("** 1- Comprobar Palabras Reservadas ");
+        System.out.println("** 2- Comprobar Operadores");
         System.out.println("** 0- Ejecutar archivo .mypy ");
         System.out.print("**Eliga una opción: ");
         /*
