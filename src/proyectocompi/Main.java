@@ -13,11 +13,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import proyectocompi.jflex.Lexer;
 import proyectocompi.jflex.Token;
+import proyectocompi.jflex.TToken;
 
 /**
  *
@@ -25,15 +27,19 @@ import proyectocompi.jflex.Token;
  */
 public class Main {
 
+    private ArrayList<TToken> Tokens;
     /**
      * @param args the command line arguments
      */
+    
+    
     public static void main(String[] args) {
         // TODO code application logic here
         Main main = new Main();
     }
     
     public Main(){
+        Tokens = new ArrayList<TToken>();
         visual();
         
     }
@@ -41,16 +47,22 @@ public class Main {
     public void visual(){
         System.out.println("***** Compilador de Python *****");
         System.out.println("*** ¿Qué desea hacer?: ");
-        System.out.println("** 1- Comprobar Palabras Reservadas ");
-        System.out.println("** 2- Comprobar Operadores");
-        System.out.println("** 0- Ejecutar archivo .mypy ");
+        System.out.println("** 1- Comprobar palabras reservadas ");
+        System.out.println("** 2- Comprobar operadores");
+        System.out.println("** 3- Comprobar literales números");
+        System.out.println("** 4- Comprobar literales string");
+        System.out.println("** 5- Comprobar separadores");
+        System.out.println("** 6- Comprobar contenedores");
+        System.out.println("** 7- Comprobar identificadores");
+        System.out.println("** 8- Prueba completa");
+        System.out.println("** 9- Ejecutar archivo .mypy ");
         System.out.print("**Eliga una opción: ");
-        /*
+        
         Scanner scan = new Scanner(System.in);
         String s = scan.next();
-        System.out.println(s);*/
+       // System.out.println(s);
         //int i = scan.nextInt();
-        Scan(fileReader());
+       // Scan(fileReader());
         
         
         
@@ -89,7 +101,7 @@ public class Main {
                Token token = lexer.yylex();
                if (token == null){
                    Resultados = Resultados + "FIN\n";
-                   System.out.println(Resultados);
+                  // System.out.println(Resultados);
                    break;
                }
                switch(token){
@@ -100,10 +112,14 @@ public class Main {
                    case Numero_Long:                       
                    case Numero_Flotante:
                    case Numero_Complejo:
-                       Resultados = Resultados + "Token: " + token + " " + lexer.lexeme + "\n";
-                       break;
+                    //   Resultados = Resultados + "Token: " + token + " " + lexer.lexeme + "\n";
+                      // break;
                    default:
-                       Resultados = Resultados + "Token: " + token + " "+ lexer.lexeme + "\n";
+                       // almacenamiento de tokens
+                       TToken token_resultado = new TToken(lexer.lexeme, token, 1);
+                      // System.out.println(token_resultado.getLexeme());
+                       Tokens.add(token_resultado);
+                     //  Resultados = Resultados + "Token: " + token + " "+ lexer.lexeme + " linea: " +lexer.linea() +"\n";
                        break;
                
                        
@@ -116,6 +132,12 @@ public class Main {
            
            
        }
+       System.out.println(Tokens.size()); // cantidad de tokens
+       /*
+       for(int i = 0; i < Tokens.size(); i++){
+           System.out.println(Tokens.get(i).getLexeme());
+
+       }*/
        
     }
      
