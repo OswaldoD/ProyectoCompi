@@ -18,7 +18,6 @@ import static proyectocompi.jflex.Token.*;
 /*Definición de errores en los identificadores*/
 errorIdetnificadores= \d+([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
 
-Variables=[aA-zZ]*
 
 /*Definicion de los numeros*/
 numerosEnteros = \d+ | [-]\d+ | [-]\d+[x]\d+ | \d+[x]\d+
@@ -72,8 +71,6 @@ identificadores = ([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
 
 /*Error identificadores*/
 {errorIdetnificadores} {lexeme=yytext(); return Error_Identificador;}
-
-{Variables} {lexeme=yytext(); return Variable;}
 
 /* Numeros */
 {numerosEnteros} {lexeme=yytext(); return Numero_Entero;}
