@@ -7,11 +7,13 @@
 package proyectocompi;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Paths;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import proyectocompi.jflex.Lexer;
@@ -37,8 +39,16 @@ public class Main {
     }
     
     public void visual(){
-        System.out.println("Compilador de Python");
-        
+        System.out.println("***** Compilador de Python *****");
+        System.out.println("*** ¿Qué desea hacer?: ");
+        System.out.println("** 1- Comprobar palabras reservadas ");
+        System.out.println("** 0- Ejecutar archivo .mypy ");
+        System.out.print("**Eliga una opción: ");
+        /*
+        Scanner scan = new Scanner(System.in);
+        String s = scan.next();
+        System.out.println(s);*/
+        //int i = scan.nextInt();
         Scan(fileReader());
         
         
