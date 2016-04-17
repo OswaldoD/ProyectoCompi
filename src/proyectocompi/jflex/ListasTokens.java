@@ -85,11 +85,16 @@ public class ListasTokens {
         System.out.println("*******************************************");        
         System.out.println("Token   |      Tipo de Token      |   Línea");
         System.out.println("-------------------------------------------");
-        for(int i=0; i< listadoTotalTokens.size(); i++){            
-            System.out.println(listadoTotalTokens.get(i).getLexeme()+"  |   "+
-                               listadoTotalTokens.get(i).getTipo_Token() + "    |   "+
-                               listadoTotalTokens.get(i).getNumero_Linea());
-            System.out.println("-------------------------------------------");
+        if(listadoTotalTokens.size()==0){
+            System.out.println("\n No se han encontrado tokens. \n");            
+        }
+        else{
+            for(int i=0; i< listadoTotalTokens.size(); i++){            
+               System.out.println(listadoTotalTokens.get(i).getLexeme()+"  |   "+
+                                  listadoTotalTokens.get(i).getTipo_Token() + "    |   "+
+                                  listadoTotalTokens.get(i).getNumero_Linea());
+               System.out.println("-------------------------------------------");
+           }           
         }
     }
                 
@@ -100,12 +105,18 @@ public class ListasTokens {
         System.out.println("*******************************************");
         System.out.println("Token   |      Tipo de Token      |   Línea");
         System.out.println("-------------------------------------------");
-        for(int i=0; i< listaErrores.size(); i++){            
-            System.out.println(listaErrores.get(i).getLexeme()+"  |   "+
-                               listaErrores.get(i).getTipo_Token() + "    |   "+
-                               listaErrores.get(i).getNumero_Linea());
-            System.out.println("-------------------------------------------");
+        if(listaErrores.size()==0){
+            System.out.println("\n No se han encontrado errores. \n");            
         }
+        else{
+            for(int i=0; i< listaErrores.size(); i++){            
+                System.out.println(listaErrores.get(i).getLexeme()+"  |   "+
+                                   listaErrores.get(i).getTipo_Token() + "    |   "+
+                                   listaErrores.get(i).getNumero_Linea());
+                System.out.println("-------------------------------------------");
+            }            
+        }
+
     }
    
     

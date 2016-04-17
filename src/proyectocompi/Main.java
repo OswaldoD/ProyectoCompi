@@ -237,7 +237,7 @@ public class Main {
     
     public void visualizarListasTokens(){
         System.out.println("***************************************");
-        System.out.println("***** Imprensión Listas de Tokens *****");
+        System.out.println("***** Menú de Imprensión Listas de Tokens *****");
         System.out.println("***************************************");        
         System.out.println("*** ¿Qué desea hacer?: ");
         System.out.println("** 1- Imprimir Tokens Encontrados ");
