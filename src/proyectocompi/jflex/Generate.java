@@ -33,9 +33,9 @@ public class Generate {
         //String path = "C:/Users/esporras/Documents/NetBeansProjects/ProyectoCompi/src/proyectocompi/jflex/Lexer.flex";
                 
       //  generateLexer(path);
-        String workingDirectory=Paths.get("").toAbsolutePath().toString();
-        workingDirectory += "/src/proyectocompi/jflex/Lexer.flex";
-        System.out.println(workingDirectory);
+        String path=Paths.get("").toAbsolutePath().toString() + "/src/proyectocompi/jflex/Lexer.flex";
+        System.out.println(path);
+        generateLexer(path);
     }
     
     /**
