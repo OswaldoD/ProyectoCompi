@@ -32,5 +32,6 @@ public enum Token {
     Numero_Flotante, 
     Numero_Complejo,
     Identificador,
+    Error_Identificador,
     ERROR;
 }

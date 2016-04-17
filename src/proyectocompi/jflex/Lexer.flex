@@ -13,8 +13,13 @@ import static proyectocompi.jflex.Token.*;
     public int linea() {return yyline+1;}
 %}
 %type Token
+
+
+/*Definición de errores en los identificadores*/
+errorIdetnificadores= \d+([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
+
 /*Definicion de variables*/
-variables = [aA-zZ]
+variables = [aA-zZ]*
 
 /*Definicion de los numeros*/
 numerosEnteros = \d+ | [-]\d+ | [-]\d+[x]\d+ | \d+[x]\d+
@@ -65,6 +70,9 @@ identificadores = ([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
 
 {white} {/*Ignore*/}
 /*"//".* {/*Ignore*/}*/
+
+/*Error identificadores*/
+{errorIdetnificadores} {lexeme=yytext(); return Error_Identificador;}
 
 /* Variables */
 {variables} {lexeme=yytext(); return Variable;}
