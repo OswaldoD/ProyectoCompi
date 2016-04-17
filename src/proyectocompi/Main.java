@@ -94,7 +94,7 @@ public class Main {
                switch(token){
                    case ERROR:
                        Resultados = Resultados + "Error, no existe\n";
-                       break;
+                       break;     
                    case Variable:
                    case Numero_Entero:
                    case Numero_Long:                       
