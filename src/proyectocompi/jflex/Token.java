@@ -24,7 +24,6 @@ public enum Token {
     separador_dos_puntos,
     separador_tab,
     literal_string,
-    literal_string_parrafo,
     contenedor,
     Numero_Entero, 
     Numero_Long,

@@ -59,9 +59,7 @@ separadorTab = "  " /* revisar */
 contenedor = "{" | "}" | "[" | "]" | "(" | ")"
 
 /* Definicion de literales */
-string = "'"[^']*"'" | "'''"[^']*"'''" | "\""[^']*"\""
-stringParrafo = "\"\"\""[^']*"\"\"\""
-
+string = "'"[^']*"'" | "'''"[^']*"'''" | "\""[^]*"\""
 
 /* Definicion de los identificadores */
 identificadores = ([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
@@ -71,6 +69,8 @@ identificadores = ([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
 
 {white} {/*Ignore*/}
 /*"//".* {/*Ignore*/}*/
+#.* {/*Ignore*/}
+\"\"\".* {/*Ignore*/}
 
 /*Error identificadores*/
 {errorIdetnificadores} {lexeme=yytext(); return Error_Identificador;}
@@ -102,7 +102,6 @@ identificadores = ([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
 
 /* literales */
 {string} {lexeme=yytext(); return literal_string;}
-{stringParrafo} {lexeme=yytext(); return literal_string_parrafo;}
 . {return ERROR;}
 
 /* Identificadores */

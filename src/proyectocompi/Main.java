@@ -215,7 +215,7 @@ public class Main {
                         + "pruebas/numeros.txt";
             case 4:
                 return Paths.get("").toAbsolutePath().toString() + "/src/"
-                        + "pruebas/strings.txt";
+                        + "pruebas/string.txt";
             case 5:
                 return Paths.get("").toAbsolutePath().toString() + "/src/"
                         + "pruebas/separadores.txt";
