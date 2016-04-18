@@ -78,6 +78,7 @@ public class Main {
             else if(s == 9){
                 System.out.println("Ingrese la ruta del archivo: ");
                 path = scan.next();
+                System.out.println(path);
                 break;
             }
             else{
