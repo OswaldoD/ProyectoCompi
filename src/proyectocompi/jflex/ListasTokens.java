@@ -27,54 +27,67 @@ public class ListasTokens {
     public ArrayList<TToken> listadoTotalTokens = new ArrayList<TToken>();
 
 
-    public void insertarTokenSeparador(TToken token ){  
-         System.out.println("Token: "+token.getLexeme());
-        int contador=0;
+    public void insertarTokenSeparador(TToken token ){           
         if(separadores.size()==0){
                 separadores.add(token);
         }
         else{
-           // System.out.println("Tamaño array: "+ separadores.size());
-            //System.out.println("");
-            for(int i=0; i<separadores.size(); i++){                     
-                if(token.getLexeme().equals(separadores.get(i).getLexeme())){  
-                    String numeroLinea=separadores.get(i).getNumero_Linea();
-                    numeroLinea+=", "+token.getNumero_Linea();
-                    //token.setNumeroLinea(numeroLinea);
-                    separadores.get(i).setNumeroLinea(numeroLinea);
-                    //System.out.println(token.getNumero_Linea());
-                    //separadores.set(i, token);
-                    contador++;
-                }
-            }
-            if(contador==0){
-                separadores.add(token);
-            }
+            busquedaTokens(token, separadores);
         }  
     }
 
     public void insertarTokenContenedor(TToken token ){        
-        contenedores.add(token);
+        if(contenedores.size()==0){
+            contenedores.add(token);
+        }
+        else{
+            busquedaTokens(token, contenedores);
+        }         
     }
     
     public void insertarTokenOperador(TToken token ){
-        operadores.add(token);
+        if(operadores.size()==0){
+            operadores.add(token);
+        }
+        else{
+            busquedaTokens(token, operadores);
+        } 
     }
     
     public void insertarTokenLiteral(TToken token ){
-        literales.add(token);
+         if(literales.size()==0){
+            literales.add(token);
+        }
+        else{
+            busquedaTokens(token, literales);
+        } 
     }
 
     public void insertarTokenNumero(TToken token ){
-        numeros.add(token);
+        if(numeros.size()==0){
+            numeros.add(token);
+        }
+        else{
+            busquedaTokens(token, numeros);
+        } 
     }
     
     public void insertarTokenPalabrasReservada(TToken token  ){
-        palabrasReservadas.add(token);
+        if(palabrasReservadas.size()==0){
+            palabrasReservadas.add(token);
+        }
+        else{
+            busquedaTokens(token, palabrasReservadas);
+        } 
     }
    
     public void insertarTokenIdentificadores(TToken token ){
-        identificadores.add(token);
+        if(identificadores.size()==0){
+            identificadores.add(token);
+        }
+        else{
+            busquedaTokens(token, identificadores);
+        } 
     }
     
     public void insertarTokenError(TToken token  ){
@@ -141,6 +154,22 @@ public class ListasTokens {
 
     }
    
-           
+    public void busquedaTokens(TToken token, ArrayList<TToken> nombreLista){   
+            int contador=0;
+            for(int i=0; i<nombreLista.size(); i++){                     
+                if(token.getLexeme().equals(nombreLista.get(i).getLexeme())){  
+                    String numeroLinea=nombreLista.get(i).getNumero_Linea();
+                    numeroLinea+=", "+token.getNumero_Linea();
+                    //token.setNumeroLinea(numeroLinea);
+                    nombreLista.get(i).setNumeroLinea(numeroLinea);
+                    //System.out.println(token.getNumero_Linea());
+                    //separadores.set(i, token);
+                    contador++;
+                }
+            }
+            if(contador==0){
+                nombreLista.add(token);
+            }
+    }
             
 }

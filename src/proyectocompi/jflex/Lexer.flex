@@ -15,8 +15,7 @@ import static proyectocompi.jflex.Token.*;
 %type Token
 
 
-/*Definición de errores en los identificadores*/
-errorIdetnificadores= \d+([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
+
 
 
 /*Definicion de los numeros*/
@@ -32,6 +31,10 @@ numerosComplejos = \d+[.][jJ] | [-]\d+[.][jJ] | \d+[.]\d+[jJ] | \d+[.]\d+[eE][jJ
                    [-][.]\d+[+-][eE]\d+[jJ] | [.]\d+[+-][eE]\d+[jJ] | \d+[eE][+-]\d+[jJ]
 
 white=[ \n]
+
+/*Definición de errores en los identificadores*/
+errorIdetnificadores= \d+([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
+
 
 /* Definicion de palabras reservadas */
 palabrasReservadas = "assert" | "break" | "class" | "continue" | "def" |"del" | 
