@@ -15,13 +15,17 @@ import java.util.ArrayList;
 public class TToken {
     private String lexeme;
     private Token Tipo_token;
-    private int numero_linea;
+    private String numero_linea;
     
-    public TToken(String lexeme, Token Tipo_token, int numero_linea){
+    public TToken(String lexeme, Token Tipo_token, String numero_linea){
         this.lexeme = lexeme;
         this.Tipo_token = Tipo_token;
         this.numero_linea = numero_linea;
         
+    }
+    
+    public void setNumeroLinea(String nuevoNumeroLinea){
+        this.numero_linea = nuevoNumeroLinea;          
     }
     
     public String getLexeme(){
@@ -32,8 +36,8 @@ public class TToken {
         return this.Tipo_token.toString();
     }
     
-    public int getNumero_Linea(){
+    public String getNumero_Linea(){
         return this.numero_linea;
-    }
+    }      
         
 }

@@ -27,8 +27,30 @@ public class ListasTokens {
     public ArrayList<TToken> listadoTotalTokens = new ArrayList<TToken>();
 
 
-    public void insertarTokenSeparador(TToken token ){        
-        separadores.add(token);
+    public void insertarTokenSeparador(TToken token ){  
+         System.out.println("Token: "+token.getLexeme());
+        int contador=0;
+        if(separadores.size()==0){
+                separadores.add(token);
+        }
+        else{
+           // System.out.println("Tamaño array: "+ separadores.size());
+            //System.out.println("");
+            for(int i=0; i<separadores.size(); i++){                     
+                if(token.getLexeme().equals(separadores.get(i).getLexeme())){  
+                    String numeroLinea=separadores.get(i).getNumero_Linea();
+                    numeroLinea+=", "+token.getNumero_Linea();
+                    //token.setNumeroLinea(numeroLinea);
+                    separadores.get(i).setNumeroLinea(numeroLinea);
+                    //System.out.println(token.getNumero_Linea());
+                    //separadores.set(i, token);
+                    contador++;
+                }
+            }
+            if(contador==0){
+                separadores.add(token);
+            }
+        }  
     }
 
     public void insertarTokenContenedor(TToken token ){        
@@ -119,7 +141,6 @@ public class ListasTokens {
 
     }
    
-    
-            
+           
             
 }

@@ -136,7 +136,7 @@ public class Main {
                       // break;
                    default:                       
                        // almacenamiento de tokens
-                       TToken token_resultado = new TToken(lexer.lexeme, token, lexer.linea());                       
+                       TToken token_resultado = new TToken(lexer.lexeme, token, Integer.toString(lexer.linea()));                       
                        //enviar el token a su respectiva lista según el tipo de token.
                        if(token_resultado.getTipo_Token()=="palabra_reservada"){                           
                            listadoTokens.insertarTokenPalabrasReservada(token_resultado);                           
@@ -179,8 +179,7 @@ public class Main {
               // break;
            }
 
-       }
-       System.out.println(Tokens.size()); // cantidad de tokens
+       }      
        listadoTokens.insertarlistadoTotalTokens();
         //listadoTokens.imprimirListatoTotalTokens();
        // listadoTokens.imprimirListaErrores();
