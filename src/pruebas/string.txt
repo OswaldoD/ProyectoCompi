@@ -1,5 +1,7 @@
 # esto es un comentario de linea
 'hola soy un literal de s2ring'''
 '''hola soy un string largo '''
-""" hola yo tambien soy un literal de string """
+""" hola yo tambien soy un literal de string 
+menti, soy un comentario de bloque y estoy siendo
+IGNORADO """
 "hola yo soy un string como lo conoces normalmente"

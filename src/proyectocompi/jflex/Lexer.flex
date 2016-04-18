@@ -31,6 +31,8 @@ numerosComplejos = \d+[.][jJ] | [-]\d+[.][jJ] | \d+[.]\d+[jJ] | \d+[.]\d+[eE][jJ
                    [-][.]\d+[+-][eE]\d+[jJ] | [.]\d+[+-][eE]\d+[jJ] | \d+[eE][+-]\d+[jJ]
 
 white=[ \n]
+/*dcomilla="\""*/
+comentarioBloque="\"\"\""[^']*"\"\"\""
 
 /*Definición de errores en los identificadores*/
 errorIdetnificadores= \d+([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
@@ -59,7 +61,8 @@ separadorTab = "  " /* revisar */
 contenedor = "{" | "}" | "[" | "]" | "(" | ")"
 
 /* Definicion de literales */
-string = "'"[^']*"'" | "'''"[^']*"'''" | "\""[^]*"\""
+/*string = "'"[^']*"'" | "'''"[^']*"'''" | "\""[^]*"\""*/
+string = "'"[^']*"'" | "'''"[^']*"'''"
 
 /* Definicion de los identificadores */
 identificadores = ([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
@@ -69,8 +72,8 @@ identificadores = ([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
 
 {white} {/*Ignore*/}
 /*"//".* {/*Ignore*/}*/
-#.* {/*Ignore*/}
-\"\"\".* {/*Ignore*/}
+"#".* {/*Ignore*/}
+{comentarioBloque} {/*Ignore*/}
 
 /*Error identificadores*/
 {errorIdetnificadores} {lexeme=yytext(); return Error_Identificador;}
