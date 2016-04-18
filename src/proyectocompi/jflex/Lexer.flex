@@ -62,7 +62,7 @@ contenedor = "{" | "}" | "[" | "]" | "(" | ")"
 
 /* Definicion de literales */
 /*string = "'"[^']*"'" | "'''"[^']*"'''" | "\""[^]*"\""*/
-string = "'"[^']*"'" | "'''"[^']*"'''"
+string = "'"[^']*"'" | "'''"[^']*"'''" 
 
 /* Definicion de los identificadores */
 identificadores = ([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
