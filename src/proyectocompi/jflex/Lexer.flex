@@ -53,7 +53,7 @@ comparadorIdentidad = "is" | "in"
 /* Definicion de separadores */
 separadorComa = ","
 separadorDosPuntos = ":"
-separadorTab = [ \t] /* revisar */
+separadorTab="  " /* revisar */
 
 /* Definicion de contenedor */
 contenedor = "{" | "}" | "[" | "]" | "(" | ")"
