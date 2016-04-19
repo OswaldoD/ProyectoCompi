@@ -28,6 +28,10 @@ try
 while
 with
 yield
+True
+False
+False
+True
 {
 }
 [

@@ -24,6 +24,7 @@ public class ListasTokens {
     private ArrayList<TToken> palabrasReservadas = new ArrayList<TToken>();
     private ArrayList<TToken> identificadores = new ArrayList<TToken>();
     private ArrayList<TToken> listaErrores = new ArrayList<TToken>();
+    private ArrayList<TToken> booleanos = new ArrayList<TToken>();
     public ArrayList<TToken> listadoTotalTokens = new ArrayList<TToken>();
 
 
@@ -90,27 +91,44 @@ public class ListasTokens {
         } 
     }
     
+    public void insertarTokenBooleano(TToken token  ){
+       if(booleanos.size()==0){
+           booleanos.add(token);
+       }
+       else{
+           busquedaTokens(token, booleanos);
+       }        
+    } 
+    
     public void insertarTokenError(TToken token  ){
        listaErrores.add(token);
-    }    
+    }   
+       
     
     
     //insertar todos los tokens encontrados ya ordenados alfabéticamente
     public void insertarlistadoTotalTokens( ){
         //ordenamiento alfabetico de cada una de dichas listas, por tipo de token.
-        ordenamientoTokens(palabrasReservadas);
-        ordenamientoTokens(literales);
-        ordenamientoTokens(identificadores);
+        //ordenamientoTokens(palabrasReservadas);
+        //ordenamientoTokens(literales);
+        //ordenamientoTokens(identificadores);
+        //ordenamientoTokens(booleanos);
         //agregar las listas al array principal de tokens
         listadoTotalTokens.addAll(palabrasReservadas);
+        ordenamientoTokens(listadoTotalTokens);
+        listadoTotalTokens.addAll(booleanos);
+        ordenamientoTokens(listadoTotalTokens);
         listadoTotalTokens.addAll(literales);
+        ordenamientoTokens(listadoTotalTokens);
         listadoTotalTokens.addAll(identificadores);
+        ordenamientoTokens(listadoTotalTokens);
         //ordenar nuevamente el array principal de token.
         ordenamientoTokens(listadoTotalTokens);
         //agregar los tokens restantes ordenados por tipo de token.
         listadoTotalTokens.addAll(separadores);
         listadoTotalTokens.addAll(contenedores);
         listadoTotalTokens.addAll(operadores);
+        ordenamientoTokens(operadores);
         listadoTotalTokens.addAll(numeros);                                  
     }
     
@@ -170,6 +188,19 @@ public class ListasTokens {
             if(contador==0){
                 nombreLista.add(token);
             }
+    }
+    //Función encargada de limpiar todos los arrgelso encaso de que el usuario desee volver al menú principal nuevamente y proceder con otra prueba.
+    public void limpiarArreglos(){
+        separadores.clear();
+        contenedores.clear();
+        operadores.clear();
+        literales.clear();
+        numeros.clear();
+        palabrasReservadas.clear();
+        identificadores.clear();
+        listaErrores.clear();
+        booleanos.clear();
+        listadoTotalTokens.clear();
     }
             
 }

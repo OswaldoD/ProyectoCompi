@@ -52,8 +52,10 @@ public class Main {
     }
     
     public void visual(){
+        System.out.println("********************************");
         System.out.println("***** Compilador de Python *****");
-        System.out.println("***  ¿Qué desea hacer?: ");
+        System.out.println("********************************");
+        System.out.println("***  ¿Qué desea hacer?: ");        
         System.out.println("**  1- Comprobar palabras reservadas ");
         System.out.println("**  2- Comprobar operadores");
         System.out.println("**  3- Comprobar literales números");
@@ -82,29 +84,10 @@ public class Main {
             }
             else if(s == 9){
                 System.out.println("Ingrese la ruta del archivo: ");
-                			 // Extension del archivo
-//		JFileChooser chooser = new JFileChooser();
-//		FileNameExtensionFilter filter = new FileNameExtensionFilter("chirripö files", "chi");
-//		chooser.setFileFilter(filter);
-//                chooser.setVisible(true);
-//                
-//             if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-//                 // carga archivo de codigo
-//            	 
-//            	 File file = chooser.getSelectedFile();
-//            	 path = file.getPath();
-//            	
-// 		} else {
-//                 JOptionPane.showMessageDialog(null,"Error en el archivo, revise que se hayan cargado correctamente",
-// 	 						  "Error al cargar el archivo",JOptionPane.ERROR_MESSAGE);
-//             }
-
-            	 System.out.println("Please select the file");
-                 ChooseFile g = new ChooseFile();
-                 path = g.getFile().getPath();
-//g.inputFile = g.new ChooseFile().getFile();
-             
-                //path = scan.next();
+                // Extension del archivo
+            	System.out.println("Please select the file");
+                ChooseFile g = new ChooseFile();
+                path = g.getFile().getPath();
                 System.out.println(path);
                 break;
             }
@@ -114,20 +97,16 @@ public class Main {
                 break;
             }
         }
-//       String path = Paths.get("").toAbsolutePath().toString() + "/src/proyectocompi/file.txt";
-
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        
         Scan(fileReader(path)); // inicio del scanner
         visualizarListasTokens();//llamar a la función encargada de mostrar menú con opciones de visualización de als listas de token
+        
+
     }
     
-    public Lexer fileReader(String path){
-      // String path = "/Users/usuario/NetBeansProjects/ProyectoCompi/src/"
-        //              + "proyectocompi/file.txt";
-       // /Users/usuario/NetBeansProjects/ProyectoCompi/src/proyectocompi
-       
-       //String path = "C:/Users/esporras/Documents/NetBeansProjects/ProyectoCompi/src/proyectocompi/file.txt";
-      // String path = Paths.get("").toAbsolutePath().toString() + "/src/proyectocompi/file.txt";
-        
+    public Lexer fileReader(String path){        
        try{
            Reader reader = new BufferedReader(new FileReader(path));
         
@@ -156,6 +135,8 @@ public class Main {
                    case ERROR:
                        Resultados = Resultados + "Error, no existe\n";
                        //enviar a la lista de errores
+                       TToken token_error = new TToken(lexer.lexeme, token, Integer.toString(lexer.linea()));
+                       listadoTokens.insertarTokenError(token_error);
                        break;     
                    case Numero_Entero:
                    case Numero_Long:                       
@@ -195,11 +176,13 @@ public class Main {
                                token_resultado.getTipo_Token()=="Numero_Flotante" ||
                                token_resultado.getTipo_Token()=="Numero_Complejo"){
                            listadoTokens.insertarTokenNumero(token_resultado);                           
-                       }                       
+                       } 
+                       else if(token_resultado.getTipo_Token()=="Booleano" ){
+                           listadoTokens.insertarTokenBooleano(token_resultado);                           
+                       }
                        else if(token_resultado.getTipo_Token()=="ERROR" || token_resultado.getTipo_Token()=="Error_Identificador"){
                            listadoTokens.insertarTokenError(token_resultado);
-                       }                                              
-                       //Tokens.add(token_resultado);                                            
+                       }                                                                                                                
                        break;                                    
                }
            } catch (IOException ex) {
@@ -207,28 +190,16 @@ public class Main {
               // break;
            }
 
-       }      
+       }     
+       /*Una vez finalizada la lectura del archivo y el análisis respectivo de cada token encontrado.
+       se procede con la llamada a la función encargada de insertar todo los tokens previamente ordenados alfabeticamente
+       y con su respectiva busqueda de token repetidos, al arreglo final de los mismos, para su posterior impresión.*/
        listadoTokens.insertarlistadoTotalTokens();
-        //listadoTokens.imprimirListatoTotalTokens();
-       // listadoTokens.imprimirListaErrores();
        
     }
-     
+    
+    //Función encargada de abrir la ruta del archivo respectivo segun la prueba que eligió el usuario.
     private String rutaArchivo(int opcion){
-        /*
-                System.out.println("***** Compilador de Python *****");
-        System.out.println("*** ¿Qué desea hacer?: ");
-        System.out.println("** 1- Comprobar palabras reservadas ");
-        System.out.println("** 2- Comprobar operadores");
-        System.out.println("** 3- Comprobar literales números");
-        System.out.println("** 4- Comprobar literales string");
-        System.out.println("** 5- Comprobar separadores");
-        System.out.println("** 6- Comprobar contenedores");
-        System.out.println("** 7- Comprobar identificadores");
-        System.out.println("** 8- Prueba completa");
-        System.out.println("** 9- Ejecutar archivo .mypy ");
-        System.out.print("**Eliga una opción: ");
-        */
         switch(opcion){
             case 1:
                 return Paths.get("").toAbsolutePath().toString() + "/src/"
@@ -264,7 +235,11 @@ public class Main {
         }
     }
     
-    
+    /*Función encargada de mostrar el menú que le permite al usuario elegir cual lista de resultados observar:
+      1)tokens eontrados
+      2)los errores léxicos encontrados.
+      3)Regresar al menú principal
+      4)Salir del programa*/
     public void visualizarListasTokens(){
         System.out.println("***************************************");
         System.out.println("***** Menú de Imprensión Listas de Tokens *****");
@@ -272,7 +247,8 @@ public class Main {
         System.out.println("*** ¿Qué desea hacer?: ");
         System.out.println("** 1- Imprimir Tokens Encontrados ");
         System.out.println("** 2- Imprimir Errores Léxicos Encontrados");
-        System.out.println("** 3- Salir");
+        System.out.println("** 3- Regresar al Menú Principal");
+        System.out.println("** 4- Salir");
         System.out.print("**Eliga una opción: ");
         int seleccion;
         Scanner scan = new Scanner(System.in);
@@ -285,10 +261,15 @@ public class Main {
                 listadoTokens.imprimirListaErrores();
                 break;
             case 3:
+                listadoTokens.limpiarArreglos();
+                visual();                
+                break;
+            case 4:
                 System.exit(0);
                 break;
 
         }
+        //se encarga de hacer una llamada de nuevo al menu de lista de tokens.
         visualizarListasTokens();
     }
 

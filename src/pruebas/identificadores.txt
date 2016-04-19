@@ -14,3 +14,6 @@ hola
 soyunaprueba
 EdadNumerica
 H_O_L_A_1_2_3_4_fin
+2G_o
+2aabc
+5_hola
