@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.stage.FileChooser;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import proyectocompi.jflex.Lexer;
 import proyectocompi.jflex.Token;
 import proyectocompi.jflex.TToken;
@@ -63,7 +67,7 @@ public class Main {
         System.out.print("***  Eliga una opción: ");
         
         int s;
-        String path;
+        String path = "";
         while(true){
             /*
             Ciclo para que el rango de numeros sea entre 0 y 1.
@@ -78,7 +82,29 @@ public class Main {
             }
             else if(s == 9){
                 System.out.println("Ingrese la ruta del archivo: ");
-                path = scan.next();
+                			 // Extension del archivo
+//		JFileChooser chooser = new JFileChooser();
+//		FileNameExtensionFilter filter = new FileNameExtensionFilter("chirripö files", "chi");
+//		chooser.setFileFilter(filter);
+//                chooser.setVisible(true);
+//                
+//             if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+//                 // carga archivo de codigo
+//            	 
+//            	 File file = chooser.getSelectedFile();
+//            	 path = file.getPath();
+//            	
+// 		} else {
+//                 JOptionPane.showMessageDialog(null,"Error en el archivo, revise que se hayan cargado correctamente",
+// 	 						  "Error al cargar el archivo",JOptionPane.ERROR_MESSAGE);
+//             }
+
+            	 System.out.println("Please select the file");
+                 ChooseFile g = new ChooseFile();
+                 path = g.getFile().getPath();
+//g.inputFile = g.new ChooseFile().getFile();
+             
+                //path = scan.next();
                 System.out.println(path);
                 break;
             }
