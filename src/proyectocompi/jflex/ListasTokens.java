@@ -109,26 +109,26 @@ public class ListasTokens {
     //insertar todos los tokens encontrados ya ordenados alfabéticamente
     public void insertarlistadoTotalTokens( ){
         //ordenamiento alfabetico de cada una de dichas listas, por tipo de token.
-        //ordenamientoTokens(palabrasReservadas);
-        //ordenamientoTokens(literales);
-        //ordenamientoTokens(identificadores);
-        //ordenamientoTokens(booleanos);
+        ordenamientoTokens(palabrasReservadas);
+        ordenamientoTokens(literales);
+        ordenamientoTokens(identificadores);
+        ordenamientoTokens(booleanos);
+        ordenamientoTokens(operadores);
+        
         //agregar las listas al array principal de tokens
-        listadoTotalTokens.addAll(palabrasReservadas);
-        ordenamientoTokens(listadoTotalTokens);
-        listadoTotalTokens.addAll(booleanos);
-        ordenamientoTokens(listadoTotalTokens);
-        listadoTotalTokens.addAll(literales);
-        ordenamientoTokens(listadoTotalTokens);
-        listadoTotalTokens.addAll(identificadores);
-        ordenamientoTokens(listadoTotalTokens);
+        listadoTotalTokens.addAll(palabrasReservadas);        
+        listadoTotalTokens.addAll(booleanos);        
+        listadoTotalTokens.addAll(literales);       
+        listadoTotalTokens.addAll(identificadores);        
+        
         //ordenar nuevamente el array principal de token.
-        ordenamientoTokens(listadoTotalTokens);
+        //ordenamientoTokens(listadoTotalTokens);
+        
         //agregar los tokens restantes ordenados por tipo de token.
         listadoTotalTokens.addAll(separadores);
         listadoTotalTokens.addAll(contenedores);
         listadoTotalTokens.addAll(operadores);
-        ordenamientoTokens(operadores);
+        
         listadoTotalTokens.addAll(numeros);                                  
     }
     
