@@ -31,8 +31,6 @@ numerosComplejos = \d+[.][jJ] | [-]\d+[.][jJ] | \d+[.]\d+[jJ] | \d+[.]\d+[eE][jJ
                    [-][.]\d+[+-][eE]\d+[jJ] | [.]\d+[+-][eE]\d+[jJ] | \d+[eE][+-]\d+[jJ]
 
 white=[ \n]
-/*dcomilla="\""*/
-comentarioBloque="\"\"\""[^']*"\"\"\""
 
 /*Definición de errores en los identificadores*/
 errorIdetnificadores= \d+([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
@@ -55,25 +53,33 @@ comparadorIdentidad = "is" | "in"
 /* Definicion de separadores */
 separadorComa = ","
 separadorDosPuntos = ":"
-separadorTab = "  " /* revisar */
+separadorTab = [ \t] /* revisar */
 
 /* Definicion de contenedor */
 contenedor = "{" | "}" | "[" | "]" | "(" | ")"
 
 /* Definicion de literales */
 /*string = "'"[^']*"'" | "'''"[^']*"'''" | "\""[^]*"\""*/
-string = "'"[^']*"'" | "'''"[^']*"'''" 
+/*string = "'"[^']*"'" | '"'[^']*'"'*/
+string = "'"[^']*"'" 
+ /*"[ ' | " ] [aqui el resto de validaciones][' | "]"*/
+
 
 /* Definicion de los identificadores */
 identificadores = ([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
 
+/* Definicion de literal booleano */
+literalBool = "True" | "False"
+
+/* Comentario de bloque */
+comentarioBloque=("'''")[^']*("'''")
 
 %%
 
 {white} {/*Ignore*/}
 /*"//".* {/*Ignore*/}*/
 "#".* {/*Ignore*/}
-{comentarioBloque} {/*Ignore*/}
+
 
 /*Error identificadores*/
 {errorIdetnificadores} {lexeme=yytext(); return Error_Identificador;}
@@ -107,6 +113,11 @@ identificadores = ([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
 {string} {lexeme=yytext(); return literal_string;}
 . {return ERROR;}
 
+/* Booleanos */
+{literalBool} {lexeme=yytext(); return Booleano;}
+
 /* Identificadores */
 {identificadores} {lexeme=yytext(); return Identificador;}
 
+/* Comentario Bloque */
+{comentarioBloque} {/*Ignore*/}

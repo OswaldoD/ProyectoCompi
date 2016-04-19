@@ -31,5 +31,6 @@ public enum Token {
     Numero_Complejo,
     Identificador,
     Error_Identificador,
+    Booleano,
     ERROR;
 }

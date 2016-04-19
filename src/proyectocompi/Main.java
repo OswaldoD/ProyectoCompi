@@ -49,17 +49,18 @@ public class Main {
     
     public void visual(){
         System.out.println("***** Compilador de Python *****");
-        System.out.println("*** ¿Qué desea hacer?: ");
-        System.out.println("** 1- Comprobar palabras reservadas ");
-        System.out.println("** 2- Comprobar operadores");
-        System.out.println("** 3- Comprobar literales números");
-        System.out.println("** 4- Comprobar literales string");
-        System.out.println("** 5- Comprobar separadores");
-        System.out.println("** 6- Comprobar contenedores");
-        System.out.println("** 7- Comprobar identificadores");
-        System.out.println("** 8- Prueba completa");
-        System.out.println("** 9- Ejecutar archivo .mypy ");
-        System.out.print("** Eliga una opción: ");
+        System.out.println("***  ¿Qué desea hacer?: ");
+        System.out.println("**  1- Comprobar palabras reservadas ");
+        System.out.println("**  2- Comprobar operadores");
+        System.out.println("**  3- Comprobar literales números");
+        System.out.println("**  4- Comprobar literales string");
+        System.out.println("**  5- Comprobar separadores");
+        System.out.println("**  6- Comprobar contenedores");
+        System.out.println("**  7- Comprobar identificadores");
+        System.out.println("**  8- Prueba completa");
+        System.out.println("**  9- Ejecutar archivo .mypy ");
+        System.out.println("** 10- Comprobar booleanos ");
+        System.out.print("***  Eliga una opción: ");
         
         int s;
         String path;
@@ -70,7 +71,7 @@ public class Main {
             Scanner scan = new Scanner(System.in);
             s = scan.nextInt();
      
-            if((s > 9) || (s < 1)){
+            if((s > 10) || (s < 1)){
                 System.out.println("** Opción incorrecta: ");
                 System.out.print("** Eliga una opción: ");
                 s = scan.nextInt();
@@ -228,6 +229,9 @@ public class Main {
             case 8:
                 return Paths.get("").toAbsolutePath().toString() + "/src/"
                         + "pruebas/principal.txt";
+            case 10:
+                return Paths.get("").toAbsolutePath().toString() + "/src/"
+                        + "pruebas/bool.txt";                
             default:
                 return "ruta incorrecta";
               //  break;
