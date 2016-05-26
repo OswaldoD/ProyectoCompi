@@ -1,0 +1,17 @@
+/*
+Instituto Tecnológico de Costa Rica
+Esto corresponde al Parser del compilador e.e
+
+Nombre archivo: parser.cup
+Para crear: java java_cup.Main< ycalc.cup
+            el .jar de cup debe estar en el mismo directorio
+*/
+
+// Se requiere de la clase java_cup.runtime.* 
+import java_cup.runtime.*;
+
+/*------------- Código del Parser -------------*/
+
+
+/*------------- Declaración de los Terminales y No Terminales ------------- */
+
