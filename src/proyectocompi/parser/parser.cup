@@ -13,5 +13,20 @@ import java_cup.runtime.*;
 /*------------- Código del Parser -------------*/
 
 
+
+
+
+
 /*------------- Declaración de los Terminales y No Terminales ------------- */
+
+terminal +,-, class
+
+non terminal <archivo_codigo>, <funciones>, <variables>, <programa_principal>, <bloque_codigo>, <identificador>
+
+
+/*------------- Declaración de Precedencia y Asociatividad -------------*/
+
+<archivo_codigo> ::= <funciones> <variables> <programa_principal> 
+                     | class <identificador> : <variables> <metodos> <var_globales> <programa_principal>
+
 
