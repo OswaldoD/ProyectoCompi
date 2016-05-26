@@ -5,6 +5,9 @@ Esto corresponde al Parser del compilador e.e
 Nombre archivo: parser.cup
 Para crear: java java_cup.Main< ycalc.cup
             el .jar de cup debe estar en el mismo directorio
+
+Manual de cup http://www.cs.princeton.edu/~appel/modern/java/CUP/manual.html#intro
+ ver el archivo ycal.cup en jflex... examples
 */
 
 // Se requiere de la clase java_cup.runtime.* 
