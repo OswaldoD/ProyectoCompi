@@ -1,5 +1,33 @@
-True
-False
-False
-True
 
+def suma(x,y,z):
+    suma = x+y+z
+    return suma
+
+def producto(a,b,c):
+    return a * b * c
+
+def promedio(x,y,z):
+    return suma(x,y,z)/3
+
+def distancia(x,y):
+    return abs(x-y)
+
+#Programa principal
+
+try:
+    a= int(input('Digite primer numero'))
+    b= int(input('Digite segundo numero'))
+    c= int(input('Digite tercero numero'))
+
+    print('El resultado de la suma es ', suma(a,b,c))
+    print('El resultado de la multiplicacion es ', producto(a,b,c))
+    print('El resultado de la promedio es ', promedio(a,b,c))
+    print('El resultado de la distancia es ', distancia(a,b))
+
+except ValueError:
+    print('Alguno de los valores de entrada no es un numero')
+    
+ 
+       
+
+        

@@ -39,8 +39,8 @@ errorIdetnificadores= \d+([aA-zZ]+|[_] )([aA-zZ]*|[0-9]|[_])*
 /* Definicion de palabras reservadas */
 palabrasReservadas = "assert" | "break" | "class" | "continue" | "def" |"del" | 
 "elif" | "else" | "except" | "exec" | "finally" | "for" | "from" | "global" | 
-"if" | "import" | "lambda" | "pass" | "print" | "raise" | "return" | "try" | 
-"while" | "with" | "yield"
+"if" | "int" | "input"| "import" | "lambda" | "pass" | "print" | "raise" | 
+"return" | "try" | "while" | "with" | "yield"
 
 /* Definicion de operadores aritmeticos */
 operadorAritmetico = "+" | "-" | "*" | "/" | "%" | "**" | "//" 
@@ -111,7 +111,7 @@ comentarioBloque=("'''")[^']*("'''")
 
 /* literales */
 {string} {lexeme=yytext(); return literal_string;}
-. {return ERROR;}
+
 
 /* Booleanos */
 {literalBool} {lexeme=yytext(); return Booleano;}
@@ -121,3 +121,5 @@ comentarioBloque=("'''")[^']*("'''")
 
 /* Comentario Bloque */
 {comentarioBloque} {/*Ignore*/}
+
+. {return ERROR;}
