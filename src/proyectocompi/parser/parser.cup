@@ -24,7 +24,7 @@ import java_cup.runtime.*;
 
 terminal +,-, class
 
-non terminal <archivo_codigo>, <funciones>, <variables>, <programa_principal>, <bloque_codigo>, <identificador>
+non terminal <archivo_codigo>, <funciones>, <variables>, <programa_principal>, <bloque_codigo>, <identificador>, <parametros>
 
 
 /*------------- Declaración de Precedencia y Asociatividad -------------*/
@@ -32,4 +32,9 @@ non terminal <archivo_codigo>, <funciones>, <variables>, <programa_principal>, <
 <archivo_codigo> ::= <funciones> <variables> <programa_principal> 
                      | class <identificador> : <variables> <metodos> <var_globales> <programa_principal>
 
+<funciones> ::= def <identificador> (<parametros>): <variables> < bloque_funcion>
+
+<variables> ::= int <identificador> <variables> 
+               | string <identificador> <variables>
+/* faltan los demas tipos de variables y el enter o terminador */
 
