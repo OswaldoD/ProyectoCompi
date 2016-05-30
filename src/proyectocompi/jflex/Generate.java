@@ -44,8 +44,16 @@ public class Generate {
      * 
      */
     public void generateLexer(String path){        
-        File file = new File(path);
-        jflex.Main.generate(file);
+      //  File file = new File(path);
+      //  jflex.Main.generate(file);
+        
+        Runtime rt = Runtime.getRuntime();
+        try{
+            Process pr = rt.exec("java -jar java-cup-11a.jar -interface -parser Parser parser_1.cup");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
         
     }
 }
