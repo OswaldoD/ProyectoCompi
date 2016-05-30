@@ -1,0 +1,84 @@
+/*
+Instituto Tecnológico de Costa Rica
+Esto corresponde al Parser del compilador e.e
+
+Nombre archivo: parser.cup
+Para crear: java java_cup.Main ycalc.cup
+            el .jar de cup debe estar en el mismo directorio
+
+Manual de cup http://www.cs.princeton.edu/~appel/modern/java/CUP/manual.html#intro
+ ver el archivo ycal.cup en jflex... examples
+
+para compilar:
+java -jar java-cup-11a.jar -interface -parser Parser parser_1.cup
+*/
+
+// Se requiere de la clase java_cup.runtime.* 
+import java_cup.runtime.*;
+import proyectocompi.scanner.Scanning;
+
+/*------------- Código del Parser -------------*/
+
+/* conexion del parser al scanner */
+parser code {: 
+    Scanning s;
+    Parser(Scanning s) {this.s=s;}
+:}
+/* Conexion al scanner */
+init with {: s.init(); :};
+scan with {: return s.next_token(); :};
+
+/*------------- Declaración de los Terminales y No Terminales ------------- */
+
+terminal PLUS, MINUS, LPAREN, RPAREN, EQUAL, class, def, int, float, list, string,
+         boolean, char, while, for, in, range, if, elif, else, try, catch,
+         finally;
+
+non terminal archivo_codigo, funciones, variables, programa_principal, 
+             bloque_codigo, identificador, parametros, bloque_funcion,
+             bloque, expression, condicion, asignacion, while_stmt,
+             for_stmt, if_stmt, elif_stmt, else_stmt, try_stmt, 
+             finally_stmt, metodos, var_globales;
+
+
+/*------------- Declaración de Precedencia y Asociatividad -------------*/
+
+archivo_codigo ::= funciones variables programa_principal 
+                     | class identificador : variables metodos var_globales programa_principal ;
+
+funciones ::= def identificador LPAREN parametros RPAREN: variables  bloque_funcion;
+
+/* faltan los demas tipos de variables y el enter o terminador */
+variables ::= int identificador variables 
+               |float identificador variables
+               |list identificador variables
+               |string identificador variables
+               |boolean identificador variables
+               |char identificador variables ;
+
+asignacion ::= identificador EQUAL expression ;
+
+/*----- ciclos -----*/
+while_stmt ::= while condicion : bloque ;
+
+for_stmt ::= for identificador in range LPAREN expression RPAREN : bloque ;
+
+/*----- IF -----*/
+
+if_stmt ::= if expression : 
+                bloque
+              elif_stmt
+              else_stmt ;
+
+elif_stmt ::= elif expression :
+                  bloque
+                | ;
+
+else_stmt ::= else: bloque 
+                | ;
+
+/*----- TRY-CATCH -----*/
+try_stmt ::= try : bloque catch identificador : bloque finally_stmt;
+
+finally_stmt ::= finally: bloque 
+                   |;
