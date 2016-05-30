@@ -11,6 +11,9 @@ Manual de cup http://www.cs.princeton.edu/~appel/modern/java/CUP/manual.html#int
 
 para compilar:
 java -jar java-cup-11a.jar -interface -parser Parser parser_1.cup
+
+Ejemplos: http://www2.cs.tum.edu/projects/cup/examples.php
+
 */
 
 // Se requiere de la clase java_cup.runtime.* 

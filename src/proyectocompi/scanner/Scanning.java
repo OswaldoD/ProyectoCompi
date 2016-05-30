@@ -122,6 +122,12 @@ public class Scanning {
        }
     }
     public void Scan(Lexer lexer){
+        /*
+        este es siguiente token next_token
+        
+        Ahora ya no va a guardar una lista de tokens, va a retornar uno a uno-
+        
+        */
        String Resultados = "";
        
        while (true){
