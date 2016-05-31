@@ -79,6 +79,10 @@ public class Main {
                     System.out.println("> hay que buscar el archivo " + file);
                     String path=Paths.get("").toAbsolutePath().toString() + "/" + file;
                     System.out.println(path);
+                    Scan(fileReader(path)); // inicio del scanner
+                    visualizarListasTokens();//llamar a la función encargada de mostrar menú con opciones de visualización de als listas de token
+
+                   
                 }
                 else{
                     System.out.println("> Archivo no encontrado");
