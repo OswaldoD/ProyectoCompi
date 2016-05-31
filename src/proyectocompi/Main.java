@@ -7,7 +7,6 @@
 package proyectocompi;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,14 +16,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.stage.FileChooser;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import proyectocompi.jflex.Lexer;
 import proyectocompi.jflex.Token;
 import proyectocompi.jflex.TToken;
-import static proyectocompi.jflex.ordenamientoTokens.ordenamientoTokens;
 import proyectocompi.jflex.ListasTokens;
 
 /**
@@ -42,15 +36,68 @@ public class Main {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        Main main = new Main();
+      //  String file = " ";
+       /* for (String s: args){
+            //System.out.println(s);
+            file = s;
+        }*/
+        String option;
+        String file;
+        try{
+            option = args[0];
+        } catch(Exception e){
+            option = "-h";
+        }
+        try{
+            file = args[1];
+        }catch(Exception e){
+            file = " ";
+        }
+        
+        Main main = new Main(option, file);
     }
     
-    public Main(){
+    public Main(String option, String file){
+        //System.out.println("Scanner desconectado");
+        System.out.println("********************************");
+        System.out.println("***** Compilador de Python *****");
+        System.out.println("********************************");
+        chooser(option, file);
+        /*
         Tokens = new ArrayList<TToken>();
         visual();
+        */
+    }
+    private void chooser(String option, String file){
+        switch (option) {
+            case "-?":
+            case "-h":
+                helper();
+                break;
+            case "-c":
+                if(!(file.equals(" "))){
+                    System.out.println("> hay que buscar el archivo " + file);
+                    String path=Paths.get("").toAbsolutePath().toString() + "/" + file;
+                    System.out.println(path);
+                }
+                else{
+                    System.out.println("> Archivo no encontrado");
+                }
+                break;
+            default:
+                commands();
+                break;
+        }
+    }
+    private void commands(){
+        System.out.println("> Comando incorrecto");
+        System.out.println("> Utilice -? o -h para obtener ayuda del sistema");
         
     }
-    
+    private void helper(){
+        System.out.println("> Comandos disponibles: ");
+        System.out.println("> c <nombre_archivo> compila un archivo");
+    }
     public void visual(){
         System.out.println("********************************");
         System.out.println("***** Compilador de Python *****");
