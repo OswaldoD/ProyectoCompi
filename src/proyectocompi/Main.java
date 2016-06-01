@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import proyectocompi.jflex.TToken;
 import proyectocompi.jflex.ListasTokens;
+import proyectocompi.parser.Parser;
 import proyectocompi.scanner.Scanning;
 
 /**
@@ -91,8 +92,9 @@ public class Main {
     
     public void prueba(){
         try {
-          //  Parser p = new Parser(new Scanning());
-         //   p.parse();
+            String path="";
+            Parser p = new Parser(new Scanning(path));
+            p.parse();
             
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

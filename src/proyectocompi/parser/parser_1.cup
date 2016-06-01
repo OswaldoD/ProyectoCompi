@@ -62,7 +62,7 @@ variables ::= int identificador variables
 asignacion ::= identificador EQUAL expression ;
 
 /*----- ciclos -----*/
-while_stmt ::= while condicion : bloque ;
+while_stmt ::= while condicion : bloque;
 
 for_stmt ::= for identificador in range LPAREN expression RPAREN : bloque ;
 
