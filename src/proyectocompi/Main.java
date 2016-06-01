@@ -82,8 +82,11 @@ public class Main {
                     System.out.println("> hay que buscar el archivo " + file);
                     String path=Paths.get("").toAbsolutePath().toString() + "/" + file;
                     System.out.println(path);
-                    Scan(fileReader(path)); // inicio del scanner
-                    visualizarListasTokens();//llamar a la función encargada de mostrar menú con opciones de visualización de als listas de token
+                    Scanning scanner = new Scanning();
+                    scanner.Scan(scanner.fileReader(path));
+                    scanner.visualizarListasTokens();
+                    //Scan(fileReader(path)); // inicio del scanner
+                    //visualizarListasTokens();//llamar a la función encargada de mostrar menú con opciones de visualización de als listas de token
 
                    
                 }
@@ -331,6 +334,7 @@ public class Main {
         try {
             Parser p = new Parser(new Scanning());
             p.parse();
+            
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
