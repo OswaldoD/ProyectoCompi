@@ -20,6 +20,9 @@ import proyectocompi.jflex.Lexer;
 import proyectocompi.jflex.Token;
 import proyectocompi.jflex.TToken;
 import proyectocompi.jflex.ListasTokens;
+import java_cup.runtime.*;
+import proyectocompi.parser.Parser;
+import proyectocompi.scanner.Scanning;
 
 /**
  *
@@ -51,7 +54,7 @@ public class Main {
         try{
             file = args[1];
         }catch(Exception e){
-            file = " ";
+            file = "#";
         }
         
         Main main = new Main(option, file);
@@ -75,7 +78,7 @@ public class Main {
                 helper();
                 break;
             case "-c":
-                if(!(file.equals(" "))){
+                if(!(file.equals("#"))){
                     System.out.println("> hay que buscar el archivo " + file);
                     String path=Paths.get("").toAbsolutePath().toString() + "/" + file;
                     System.out.println(path);
@@ -324,4 +327,13 @@ public class Main {
         visualizarListasTokens();
     }
 
+    public void prueba(){
+        try {
+            Parser p = new Parser(new Scanning());
+            p.parse();
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }
