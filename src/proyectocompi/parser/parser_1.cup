@@ -29,7 +29,7 @@ parser code {:
 :}
 /* Conexion al scanner */
 init with {: s.init(); :};
-scan with {: return s.next_token(); :};
+scan with {: return s.nextToken(); :};
 
 /*------------- Declaración de los Terminales y No Terminales ------------- */
 
@@ -85,3 +85,12 @@ try_stmt ::= try : bloque catch identificador : bloque finally_stmt;
 
 finally_stmt ::= finally: bloque 
                    |;
+
+/* Al final del bloque tiene que haber un ; */
+/* def ERROR :
+   def ERROR ( ):
+   def id ERROR:
+
+    el error del ;
+
+ */

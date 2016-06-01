@@ -28,6 +28,7 @@ public class Scanning {
     private ArrayList<TToken> Tokens;
     ListasTokens listadoTokens = new ListasTokens();
     private String path;
+    private Lexer lexer;
     
     public Scanning(String path){
         
@@ -37,8 +38,10 @@ public class Scanning {
         
     }
     public void init(){
-        Scan(fileReader());
-        visualizarListasTokens();
+        this.lexer = fileReader(); // objeto lexer para el scanner
+        nextToken(); //retorna el siguiente token
+        
+      //  visualizarListasTokens();
     }
     
     public Lexer fileReader(){        
@@ -55,18 +58,20 @@ public class Scanning {
            return lexer;
        }
     }
-    public void Scan(Lexer lexer){
+    public void nextToken(){
         /*
-        este es siguiente token next_token
+        este es siguiente token nextToken
         
         Ahora ya no va a guardar una lista de tokens, va a retornar uno a uno-
+        
+        como retornar los tokens para que el parser los use?
         
         */
        String Resultados = "";
        
        while (true){
            try {
-               Token token = lexer.yylex();
+               Token token = this.lexer.yylex();
                if (token == null){
                   // Resultados = Resultados + "FIN\n";
                   // System.out.println(Resultados);
@@ -77,7 +82,8 @@ public class Scanning {
                        Resultados = Resultados + "Error, no existe\n";
                        //enviar a la lista de errores
                        TToken token_error = new TToken(lexer.lexeme, token, Integer.toString(lexer.linea()));
-                       listadoTokens.insertarTokenError(token_error);
+                       System.out.println("> Error encontrado: " + token_error.getLexeme() + " en la linea " + token_error.getNumero_Linea());
+                      // listadoTokens.insertarTokenError(token_error);
                        break;     
                    case Numero_Entero:
                    case Numero_Long:                       
@@ -86,8 +92,10 @@ public class Scanning {
                       // break;
                    default:                       
                        // almacenamiento de tokens
-                       TToken token_resultado = new TToken(lexer.lexeme, token, Integer.toString(lexer.linea()));                       
+                       TToken token_resultado = new TToken(lexer.lexeme, token, Integer.toString(lexer.linea())); 
+                       System.out.println("> Token encontrado -> " + token_resultado.getLexeme() + " de la familia -> " + token_resultado.getTipo_Token());
                        //enviar el token a su respectiva lista según el tipo de token.
+                       /*
                        if(token_resultado.getTipo_Token()=="palabra_reservada"){                           
                            listadoTokens.insertarTokenPalabrasReservada(token_resultado);                           
                        }
@@ -123,7 +131,8 @@ public class Scanning {
                        }
                        else if(token_resultado.getTipo_Token()=="ERROR" || token_resultado.getTipo_Token()=="Error_Identificador"){
                            listadoTokens.insertarTokenError(token_resultado);
-                       }                                                                                                                
+                       }             
+                       */
                        break;                                    
                }
            } catch (IOException ex) {

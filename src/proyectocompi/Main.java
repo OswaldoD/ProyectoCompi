@@ -62,7 +62,7 @@ public class Main {
                 if(!(file.equals("#"))){
                     System.out.println("> hay que buscar el archivo " + file);
                     String path=Paths.get("").toAbsolutePath().toString() + "/" + file;
-                    System.out.println(path);
+                    System.out.println("> "+path);
                     Scanning scanner = new Scanning(path);
                     scanner.init();
                //     scanner.Scan(scanner.fileReader());
@@ -91,8 +91,8 @@ public class Main {
     
     public void prueba(){
         try {
-       //     Parser p = new Parser(new Scanning());
-        //    p.parse();
+          //  Parser p = new Parser(new Scanning());
+         //   p.parse();
             
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
