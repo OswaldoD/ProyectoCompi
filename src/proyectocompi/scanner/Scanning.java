@@ -27,15 +27,23 @@ public class Scanning {
 
     private ArrayList<TToken> Tokens;
     ListasTokens listadoTokens = new ListasTokens();
+    private String path;
     
-    public Scanning(){
+    public Scanning(String path){
+        
         Tokens = new ArrayList<TToken>();
+        this.path= path;
     //    visual();
         
     }
-    public Lexer fileReader(String path){        
+    public void init(){
+        Scan(fileReader());
+        visualizarListasTokens();
+    }
+    
+    public Lexer fileReader(){        
        try{
-           Reader reader = new BufferedReader(new FileReader(path));
+           Reader reader = new BufferedReader(new FileReader(this.path));
         
            Lexer lexer = new Lexer(reader);
            
