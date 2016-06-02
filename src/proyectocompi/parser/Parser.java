@@ -70,24 +70,30 @@ public class Parser extends java_cup.runtime.lr_parser {
   }
 
   /** Indicates start state. */
+  @Override
   public int start_state() {return 0;}
   /** Indicates start production. */
+  @Override
   public int start_production() {return 1;}
 
   /** <code>EOF</code> Symbol index. */
+  @Override
   public int EOF_sym() {return 0;}
 
   /** <code>error</code> Symbol index. */
+  @Override
   public int error_sym() {return 1;}
 
 
   /** User initialization code. */
+  @Override
   public void user_init() throws java.lang.Exception
     {
  s.init(); 
     }
 
   /** Scan to get the next Symbol. */
+  @Override
   public java_cup.runtime.Symbol scan()
     throws java.lang.Exception
     {
@@ -96,7 +102,8 @@ public class Parser extends java_cup.runtime.lr_parser {
 
  
     public Scanning s;
-    public Parser(Scanning s) {this.s=s;}
+    public Parser(String path) {
+        this.s=new Scanning(path);}
 
 }
 
@@ -125,6 +132,8 @@ class CUP$Parser$actions {
         {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 1: // $START ::= funciones EOF 
+                          System.out.println("esto3");
+
             {
               Object RESULT =null;
 		int start_valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).left;
@@ -132,17 +141,24 @@ class CUP$Parser$actions {
 		Object start_val = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		RESULT = start_val;
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("$START",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+                            System.out.println(CUP$Parser$result.toString());
+
             }
           /* ACCEPT */
+            System.out.println("esto");
           CUP$Parser$parser.done_parsing();
+          System.out.println("aquello");
           return CUP$Parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 0: // funciones ::= def 
+                          System.out.println("esto2");
+
             {
               Object RESULT =null;
 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("funciones",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
+              System.out.println(CUP$Parser$result.toString());
             }
           return CUP$Parser$result;
 

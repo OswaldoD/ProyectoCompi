@@ -98,11 +98,13 @@ public class Main {
     public void prueba(String path){
         try {
             //String path="";
-            Parser p = new Parser(new Scanning(path));
+            
+            Parser p = new Parser(path);
             p.parse();
             
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
     public void trying(Scanning scanner){
