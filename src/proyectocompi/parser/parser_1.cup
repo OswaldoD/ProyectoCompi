@@ -24,8 +24,8 @@ import proyectocompi.scanner.Scanning;
 
 /* conexion del parser al scanner */
 parser code {: 
-    Scanning s;
-    Parser(Scanning s) {this.s=s;}
+    public Scanning s;
+    public Parser(Scanning s) {this.s=s;}
 :}
 /* Conexion al scanner */
 init with {: s.init(); :};
@@ -33,59 +33,64 @@ scan with {: return s.nextToken(); :};
 
 /*------------- Declaración de los Terminales y No Terminales ------------- */
 
-terminal PLUS, MINUS, LPAREN, RPAREN, EQUAL, class, def, int, float, list, string,
-         boolean, char, while, for, in, range, if, elif, else, try, catch,
-         finally;
+terminal PLUS, MINUS, LPAREN, RPAREN, EQUAL, CLASS, def, INT, FLOAT, list, STRING,
+         BOOLEAN, CHAR, WHILE, FOR, IN, RANGE, IF, ELIF, ELSE, TRY, CATCH,
+         FINALLY, identificador;
 
 non terminal archivo_codigo, funciones, variables, programa_principal, 
-             bloque_codigo, identificador, parametros, bloque_funcion,
+             bloque_codigo, parametros, bloque_funcion,
              bloque, expression, condicion, asignacion, while_stmt,
              for_stmt, if_stmt, elif_stmt, else_stmt, try_stmt, 
              finally_stmt, metodos, var_globales;
 
 
 /*------------- Declaración de Precedencia y Asociatividad -------------*/
-
+/*
 archivo_codigo ::= funciones variables programa_principal 
-                     | class identificador : variables metodos var_globales programa_principal ;
+                     | CLASS identificador : variables metodos var_globales programa_principal ;*/
 
-funciones ::= def identificador LPAREN parametros RPAREN: variables  bloque_funcion;
+//funciones ::= def identificador LPAREN parametros RPAREN: variables  bloque_funcion;
 
-/* faltan los demas tipos de variables y el enter o terminador */
-variables ::= int identificador variables 
-               |float identificador variables
+funciones ::= def identificador;
+
+
+/* faltan los demas tipos de variables y el enter o terminador *//*
+variables ::= INT identificador variables 
+               |FLOAT identificador variables
                |list identificador variables
-               |string identificador variables
-               |boolean identificador variables
-               |char identificador variables ;
-
+               |STRING identificador variables
+               |BOOLEAN identificador variables
+               |CHAR identificador variables ;*/
+/*
 asignacion ::= identificador EQUAL expression ;
-
+*/
 /*----- ciclos -----*/
-while_stmt ::= while condicion : bloque;
+/*
+while_stmt ::= WHILE condicion : bloque;
 
-for_stmt ::= for identificador in range LPAREN expression RPAREN : bloque ;
+for_stmt ::= FOR identificador IN RANGE LPAREN expression RPAREN : bloque ;*/
 
 /*----- IF -----*/
-
-if_stmt ::= if expression : 
+/*
+if_stmt ::= IF expression : 
                 bloque
               elif_stmt
               else_stmt ;
 
-elif_stmt ::= elif expression :
+elif_stmt ::= ELIF expression :
                   bloque
                 | ;
 
-else_stmt ::= else: bloque 
+else_stmt ::= ELSE: bloque 
                 | ;
-
+*/
 /*----- TRY-CATCH -----*/
-try_stmt ::= try : bloque catch identificador : bloque finally_stmt;
+/*
+try_stmt ::= TRY : bloque CATCH identificador : bloque finally_stmt;
 
-finally_stmt ::= finally: bloque 
+finally_stmt ::= FINALLY: bloque 
                    |;
-
+*/
 /* Al final del bloque tiene que haber un ; */
 /* def ERROR :
    def ERROR ( ):

@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java_cup.runtime.Symbol;
 import proyectocompi.jflex.TToken;
 import proyectocompi.jflex.ListasTokens;
 import proyectocompi.parser.Parser;
@@ -64,8 +65,12 @@ public class Main {
                     System.out.println("> hay que buscar el archivo " + file);
                     String path=Paths.get("").toAbsolutePath().toString() + "/" + file;
                     System.out.println("> "+path);
-                    Scanning scanner = new Scanning(path);
-                    scanner.init();
+                    
+                //    Scanning scanner = new Scanning(path);
+              //      scanner.init();
+                    prueba(path);
+                  //  trying(scanner);
+                    
                //     scanner.Scan(scanner.fileReader());
               //      scanner.visualizarListasTokens();
                     //Scan(fileReader(path)); // inicio del scanner
@@ -90,9 +95,9 @@ public class Main {
         System.out.println("> c <nombre_archivo> compila un archivo");
     }
     
-    public void prueba(){
+    public void prueba(String path){
         try {
-            String path="";
+            //String path="";
             Parser p = new Parser(new Scanning(path));
             p.parse();
             
@@ -100,4 +105,18 @@ public class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void trying(Scanning scanner){
+             //   System.out.println("aca1");
+
+        int i = 10;
+         //       System.out.println("aca2");
+
+    while(i > 0){
+          //      System.out.println("aca3");
+
+        scanner.nextToken();
+      //  System.out.println("acaf");
+        i--;
+    }
+}
 }

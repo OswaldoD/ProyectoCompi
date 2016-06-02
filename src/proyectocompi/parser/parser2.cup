@@ -1,0 +1,44 @@
+/*
+Instituto Tecnológico de Costa Rica
+Esto corresponde al Parser del compilador e.e
+
+Nombre archivo: parser.cup
+Para crear: java java_cup.Main ycalc.cup
+            el .jar de cup debe estar en el mismo directorio
+
+Manual de cup http://www.cs.princeton.edu/~appel/modern/java/CUP/manual.html#intro
+ ver el archivo ycal.cup en jflex... examples
+
+para compilar:
+java -jar java-cup-11a.jar -interface -parser Parser parser_1.cup
+
+Ejemplos: http://www2.cs.tum.edu/projects/cup/examples.php
+
+*/
+
+// Se requiere de la clase java_cup.runtime.* 
+import java_cup.runtime.*;
+import proyectocompi.scanner.Scanning;
+
+/*------------- Código del Parser -------------*/
+
+/* conexion del parser al scanner */
+parser code {: 
+    public Scanning s;
+    public Parser(Scanning s) {this.s=s;}
+:}
+/* Conexion al scanner */
+init with {: s.init(); :};
+scan with {: return s.nextToken(); :};
+
+/*------------- Declaración de los Terminales y No Terminales ------------- */
+
+terminal def;
+
+non terminal funciones;
+
+
+/*------------- Declaración de Precedencia y Asociatividad -------------*/
+
+funciones ::= def;
+

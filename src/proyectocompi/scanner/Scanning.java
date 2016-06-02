@@ -14,21 +14,27 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java_cup.runtime.DefaultSymbolFactory;
+import java_cup.runtime.Symbol;
+import java_cup.runtime.SymbolFactory;
+//import java_cup.sym;
 import proyectocompi.jflex.Lexer;
 import proyectocompi.jflex.Token;
 import proyectocompi.jflex.TToken;
 import proyectocompi.jflex.ListasTokens;
-
+import proyectocompi.parser.sym;
+//import proyectocompi.parser.sym;
 /**
  *
  * @author usuario
  */
-public class Scanning {
+public class Scanning{
 
     private ArrayList<TToken> Tokens;
     ListasTokens listadoTokens = new ListasTokens();
-    private String path;
+    public String path;
     private Lexer lexer;
+    private final SymbolFactory sf = new DefaultSymbolFactory();
     
     public Scanning(String path){
         
@@ -39,7 +45,7 @@ public class Scanning {
     }
     public void init(){
         this.lexer = fileReader(); // objeto lexer para el scanner
-        nextToken(); //retorna el siguiente token
+       // nextToken(); //retorna el siguiente token
         
       //  visualizarListasTokens();
     }
@@ -58,7 +64,7 @@ public class Scanning {
            return lexer;
        }
     }
-    public void nextToken(){
+    public Symbol nextToken(){
         /*
         este es siguiente token nextToken
         
@@ -75,7 +81,8 @@ public class Scanning {
                if (token == null){
                   // Resultados = Resultados + "FIN\n";
                   // System.out.println(Resultados);
-                   break;
+                  return sf.newSymbol("EOF", sym.EOF);
+                  // break;
                }
                switch(token){
                    case ERROR:
@@ -83,69 +90,32 @@ public class Scanning {
                        //enviar a la lista de errores
                        TToken token_error = new TToken(lexer.lexeme, token, Integer.toString(lexer.linea()));
                        System.out.println("> Error encontrado: " + token_error.getLexeme() + " en la linea " + token_error.getNumero_Linea());
+                       return sf.newSymbol("Error", sym.error);
                       // listadoTokens.insertarTokenError(token_error);
-                       break;     
+                      // break;     
                    case Numero_Entero:
                    case Numero_Long:                       
                    case Numero_Flotante:
-                   case Numero_Complejo:
+                       /*
+                   case Identificador:
+                       System.out.println("> Token encontrado -> " + lexer.lexeme + " de la familia -> ID" );
+
+                       return sf.newSymbol(lexer.lexeme, sym.identificador);*/
+
                       // break;
                    default:                       
                        // almacenamiento de tokens
                        TToken token_resultado = new TToken(lexer.lexeme, token, Integer.toString(lexer.linea())); 
                        System.out.println("> Token encontrado -> " + token_resultado.getLexeme() + " de la familia -> " + token_resultado.getTipo_Token());
-                       //enviar el token a su respectiva lista según el tipo de token.
-                       /*
-                       if(token_resultado.getTipo_Token()=="palabra_reservada"){                           
-                           listadoTokens.insertarTokenPalabrasReservada(token_resultado);                           
-                       }
-                       else if(token_resultado.getTipo_Token()=="literal_string" || token_resultado.getTipo_Token()=="literal_string_parrafo"){
-                           listadoTokens.insertarTokenLiteral(token_resultado);
-                       }
-                       else if(token_resultado.getTipo_Token()=="Identificador"){
-                           listadoTokens.insertarTokenIdentificadores(token_resultado);
-                       }
-                       else if(token_resultado.getTipo_Token()=="operador_aritmetico" || 
-                               token_resultado.getTipo_Token()=="operador_comparativo" ||
-                               token_resultado.getTipo_Token()=="operador_asignativo" ||
-                               token_resultado.getTipo_Token()=="operador_bits" ||
-                               token_resultado.getTipo_Token()=="operador_logico"){
-                           listadoTokens.insertarTokenOperador(token_resultado);                           
-                       }
-                       else if(token_resultado.getTipo_Token()=="separador_coma" || 
-                               token_resultado.getTipo_Token()=="separador_dos_puntos" ||
-                               token_resultado.getTipo_Token()=="separador_tab"){
-                           listadoTokens.insertarTokenSeparador(token_resultado);
-                       }
-                       else if(token_resultado.getTipo_Token()=="contenedor"){
-                           listadoTokens.insertarTokenContenedor(token_resultado);
-                       }
-                       else if(token_resultado.getTipo_Token()=="Numero_Entero" || 
-                               token_resultado.getTipo_Token()=="Numero_Long" ||
-                               token_resultado.getTipo_Token()=="Numero_Flotante" ||
-                               token_resultado.getTipo_Token()=="Numero_Complejo"){
-                           listadoTokens.insertarTokenNumero(token_resultado);                           
-                       } 
-                       else if(token_resultado.getTipo_Token()=="Booleano" ){
-                           listadoTokens.insertarTokenBooleano(token_resultado);                           
-                       }
-                       else if(token_resultado.getTipo_Token()=="ERROR" || token_resultado.getTipo_Token()=="Error_Identificador"){
-                           listadoTokens.insertarTokenError(token_resultado);
-                       }             
-                       */
-                       break;                                    
+                       return sf.newSymbol(lexer.lexeme, sym.def);
+                      // break;                                    
                }
            } catch (IOException ex) {
                Logger.getLogger(Scanning.class.getName()).log(Level.SEVERE, null, ex);
               // break;
+              return sf.newSymbol("error archivo", sym.error);
            }
-
-       }     
-       /*Una vez finalizada la lectura del archivo y el análisis respectivo de cada token encontrado.
-       se procede con la llamada a la función encargada de insertar todo los tokens previamente ordenados alfabeticamente
-       y con su respectiva busqueda de token repetidos, al arreglo final de los mismos, para su posterior impresión.*/
-       listadoTokens.insertarlistadoTotalTokens();
-       
+       }   
     }
     /*Función encargada de mostrar el menú que le permite al usuario elegir cual lista de resultados observar:
       1)tokens eontrados
