@@ -5,6 +5,7 @@ import static proyectocompi.jflex.Token.*;
 %public
 %class Lexer
 %unicode
+%cup
 %line /*conteo de lineas*/
 %{
     public String lexeme;

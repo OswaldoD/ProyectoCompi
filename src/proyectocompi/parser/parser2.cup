@@ -15,6 +15,7 @@ java -jar java-cup-11a.jar -interface -parser Parser parser_1.cup
 Ejemplos: http://www2.cs.tum.edu/projects/cup/examples.php
 
 */
+package proyectocompi.parser;
 
 // Se requiere de la clase java_cup.runtime.* 
 import java_cup.runtime.*;
@@ -24,8 +25,13 @@ import proyectocompi.scanner.Scanning;
 
 /* conexion del parser al scanner */
 parser code {: 
+
     public Scanning s;
-    public Parser(Scanning s) {this.s=s;}
+
+    public Parser(String path) {
+        Scanning scan = new Scanning(path);
+        this.s=scan;
+    }
 :}
 /* Conexion al scanner */
 init with {: s.init(); :};
@@ -33,12 +39,12 @@ scan with {: return s.nextToken(); :};
 
 /*------------- Declaración de los Terminales y No Terminales ------------- */
 
-terminal def;
+terminal String def;
 
-non terminal funciones;
+non terminal START;
 
 
 /*------------- Declaración de Precedencia y Asociatividad -------------*/
 
-funciones ::= def;
+START ::= def;
 

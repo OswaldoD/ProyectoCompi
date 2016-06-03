@@ -98,7 +98,7 @@ public class Main {
     public void prueba(String path){
         try {
             //String path="";
-            
+          //  Scanning s = new Scanning(path);
             Parser p = new Parser(path);
             p.parse();
             
